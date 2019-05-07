@@ -4,7 +4,8 @@ import classes from './WorkersList.module.scss';
 const WorkersList = () => {
 
   return (
-    <div>WorkersList</div>
+    <div className = {classes.Layout}>
+    </div>
   )
 }
 export default WorkersList;
