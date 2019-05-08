@@ -1,0 +1,17 @@
+@import 'styles/utils.scss';
+
+.UserInfoWrapper{
+  @include ArrangeCenter();
+  flex-direction: column;
+  height: 300px;
+  .Img {
+    width: 50%;
+    padding-bottom: 5px;
+  }
+  .UserName {
+    color : $workerName;
+  }
+  .UserGrade {
+    color : $curPageName;
+  }
+}
