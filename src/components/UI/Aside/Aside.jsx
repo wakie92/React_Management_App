@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './WorkersListAside.module.scss';
-
+import classes from './Aside.module.scss';
+import UserInfo from 'components/UI/UserInfo';
 const Aside = () => {
 
   return (
     <aside>
-      Aside
+      <UserInfo/>
     </aside>
   )
 }
