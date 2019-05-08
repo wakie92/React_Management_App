@@ -2,7 +2,9 @@
 
 .Background {
   background-color: $backgroundColor;
-  height : 1100px;
-  display : grid;
-  grid-auto-rows: minmax(auto, 1fr);
+  // display : flex;
+  // justify-content: center;
+  display: grid;
+  grid-auto-rows: minmax(auto ,100vh);
+  justify-content: center;
 }
