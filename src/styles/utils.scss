@@ -1,0 +1,18 @@
+
+
+//컬러
+$backgroundColor : #B1BED9;
+$asideColor : #2A58AD;
+$mainBackColor : #7E8285;
+$curPageName : #35AAE7;
+$workerName : #CCD2D5;
+$activeColor : #67BA2F;
+$inputUnderLine : #E0E8EC;
+$inputLetter : #8694A3;
+$inputContent : #9BA7B4;
+
+@mixin ArrangeCenter {
+  display : flex;
+  justify-content: center;
+  align-items: center;
+}
