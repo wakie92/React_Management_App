@@ -6,8 +6,8 @@ const WorkersList = () => {
 
   return (
     <div className = {classes.Layout}>
-      <Aside/>
-      <Main/>
+      {/* <Aside/> */}
+      {/* <Main/> */}
     </div>
   )
 }
