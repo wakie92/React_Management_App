@@ -1,0 +1,23 @@
+@import "styles/utils.scss";
+
+ul {
+  list-style: none;
+  padding-left: 0%;
+}
+
+.Home_outbox {
+  @include ArrangeCenter();
+  width: 80%;
+  height: 80%;
+  .Home_input {
+    background-color: white;
+    border-radius: 10px 0px 0px 10px;
+    .Home_message{
+      font-size: 20px;    
+    }
+  }
+  .Picture {
+    background-color: red;
+    border-radius: 0px 10px 10px 0px;
+  }
+}
