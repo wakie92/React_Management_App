@@ -1,0 +1,41 @@
+@import 'styles/utils.scss';
+
+.ContentsHeader {
+  display : flex;
+  width: 100%;
+  justify-content: space-between;
+  .Worker{
+    display : flex;
+    flex-direction : column;
+    justify-content: center;
+    height: 80px;
+    .WorkerGrade {
+      font-size : 20px;
+      font-weight: 600;
+      color : $gradeColor;
+    }
+    .WorkerName {
+      font-size : 13px;
+      color : $workerName;
+    }
+  }
+
+  .FunctionIcon {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 160px;
+    .WorkerStatus {
+      border-radius: 20px;
+      border: 1px solid $workerName;
+    }
+    .ResetInput , .EditInput, .Delete {
+      border : 1px solid $workerName;
+      border-radius: 50%;
+    }
+    .ResetInput , .EditInput, .Delete, .WorkerStatus {
+      padding : 5px;
+      background-color: white;
+    }
+  }
+}
