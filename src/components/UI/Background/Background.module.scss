@@ -1,5 +1,10 @@
+@import 'styles/utils.scss';
 
 .Background {
-  background-color: darkcyan;
-  height: 100%;
+  background-color: $backgroundColor;
+  // display : flex;
+  // justify-content: center;
+  display: grid;
+  grid-auto-rows: minmax(auto ,100vh);
+  justify-content: center;
 }
