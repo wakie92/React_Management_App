@@ -1,10 +1,4 @@
 @import 'styles/utils.scss';
 .Layout {
-  display : grid;
-  grid-auto-columns: minmax(300px, 4fr);
-  grid-auto-rows: minmax(auto, 90vh);
-  grid-auto-flow: column;
-  grid-template-areas: "a m m m";
-  justify-content: center;
-  // align-items: center;
+  background-size: 100%, 100%;
 }
