@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './MainContents.module.scss';
 import MainContentsHeader from 'components/UI/Main/MainContentsHeader';
 import MainContentsSubHeader from 'components/UI/Main/MainContentsSubHeader';
+//여기에 import
+import MainInputForm from 'components/UI/Main/MainInputForm';
 const MainContents = () => {
 
   return (
@@ -11,6 +13,7 @@ const MainContents = () => {
       
       <MainContentsSubHeader/>
       {/* 형 사원 리스트 */}
+      <MainInputForm/>
     </div>
   )
 }

@@ -9,7 +9,7 @@ main {
   }
   .SectionContents{
     background-color: $mainBackColor;
-    height: 100%;
+    height: calc( 100% - 100px );
     display : flex;
     flex-direction: column;
     padding : 0 30px;
