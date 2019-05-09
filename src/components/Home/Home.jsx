@@ -10,15 +10,11 @@ const Home = () => {
             <ul>
               <li className={classes.Home_message}>Welcome Back</li>
             </ul>
-            <ul>
-              <li className={classes.Home_items}>Email Address</li>
-            </ul>
-            <input className={classes.Home_input_tag} type="text" autoFocus placeholder="Email Address" />
-            <ul>
-              <li className={classes.Home_items}>Password</li>
-            </ul>
-            <input className={classes.Home_input_tag} type="password" placeholder="Password"/>
-            <div>버튼자리</div>
+            <div>                       
+              <input className={classes.Home_input_tag} type="text" autoFocus placeholder="Email Address" />
+              <input className={classes.Home_input_tag} type="password" placeholder="Password"/>
+            </div>
+            <div>버튼자리</div>            
           </div>
         </div>
         <div className={classes.Picture}>
