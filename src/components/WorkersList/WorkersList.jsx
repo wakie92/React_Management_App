@@ -5,9 +5,11 @@ import Main from 'components/UI/Main';
 const WorkersList = () => {
 
   return (
-    <div className = {classes.Layout}>
-      {/* <Aside/> */}
-      {/* <Main/> */}
+    <div className = {classes.WorkersListBack}>
+      <div className = {classes.Layout}>
+        <Aside/>
+        <Main/>
+      </div>
     </div>
   )
 }
