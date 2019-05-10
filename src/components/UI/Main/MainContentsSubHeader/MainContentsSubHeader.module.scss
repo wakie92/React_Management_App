@@ -1,7 +1,23 @@
 @import 'styles/utils.scss';
 
-.Line{
-  border-bottom: 0.5px solid $inputContent;
-  width: 100%;
-  height: 50px;
+.SubHeaderWrapper{
+  display: flex;
+
+  .Line{
+    border-bottom: 0.5px solid $inputContent;
+    width: 100%;
+    height : 40px;  
+  }
+  .CurPage {
+    display : flex;
+    width : 200px;
+    justify-content: space-between;
+    // border-bottom: 0.5px solid $inputContent;
+    color : $curPageName;
+    font-weight: 600;
+    span {
+      border-bottom: 2px solid $curPageName;
+      letter-spacing: 2px;
+    }
+  }
 }
