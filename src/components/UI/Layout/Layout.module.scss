@@ -1,0 +1,18 @@
+@import 'styles/utils.scss';
+
+.LayoutBack{
+  @include ArrangeCenter(); 
+  height: 100%;
+  .Layout {
+    width: 90%;
+    display: grid;
+    grid-template-areas: "a m m m";
+    grid-auto-columns: minmax(200px, 1fr);
+    box-shadow: 0px 0px 16px #E7ECEF;
+  }
+  @media screen and (max-width : 768px){
+    .Layout {
+      grid-auto-columns: minmax(100px, 1fr);
+    }
+  }
+}
