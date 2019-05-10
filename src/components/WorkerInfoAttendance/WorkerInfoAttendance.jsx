@@ -3,7 +3,6 @@ import MainWorkerInfoAttendance from 'components/UI/Main/MainWorkerInfoAttendanc
 import MainContentsSubHeader from 'components/UI/Main/MainContentsSubHeader';
 
 const WorkerInfoAttendance = () => {
-  console.log('3')
   return (
     <>
       <MainContentsSubHeader/>

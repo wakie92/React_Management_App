@@ -1,7 +1,8 @@
-import React from './WorkerInfoDetail';
+import React from 'react';
 import MainWorkerDetailInfo from 'components/UI/Main/MainWorkerDetailInfo';
 import MainContentsSubHeader from 'components/UI/Main/MainContentsSubHeader';
-const WorkerInfo = () => {
+
+const WorkerInfoDetail = () => {
 
   return (
     <>
@@ -10,4 +11,4 @@ const WorkerInfo = () => {
     </>
   )
 }
-export default WorkerInfo;
+export default WorkerInfoDetail;
