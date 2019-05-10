@@ -1,0 +1,39 @@
+@import 'styles/utils.scss';
+
+.InputWrapper {
+  width: calc(100% - 40px);
+  margin: 20px 0;
+  height: 100%;
+  background-color: white;
+  padding : 0 20px;
+  .WrapperHeader{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    color : $inputLetter;
+  }
+  .InputForm {
+    height: calc(100% - 70px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 100px);
+    font-size : 20px;
+    div {
+      border-bottom : 1px solid $inputUnderLine;
+      display: flex;
+      align-items: center;
+    }
+    div:nth-child(2n) {
+      color : $inputContent;
+    }
+    div:nth-child(2n-1) {
+      color : $inputLetter;
+      font-weight: 700;
+    }
+    .Img, .ProfileImg {
+      grid-row : span 2;
+    }
+  }
+}
