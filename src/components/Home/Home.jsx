@@ -13,8 +13,8 @@ const Home = () => {
             <div>                       
               <input className={classes.Home_input_tag} type="text" autoFocus placeholder="Email Address" />
               <input className={classes.Home_input_tag} type="password" placeholder="Password"/>
-            </div>
-            <div>버튼자리</div>            
+              <div>버튼자리</div>
+            </div>            
           </div>
         </div>
         <div className={classes.Picture}>

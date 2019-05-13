@@ -1,16 +1,18 @@
 import React from 'react';
 import classes from './WorkersList.module.scss';
-import Aside from 'components/UI/Aside'
-import Main from 'components/UI/Main';
+
 const WorkersList = () => {
 
   return (
-    <div className = {classes.WorkersListBack}>
-      <div className = {classes.Layout}>
-        <Aside/>
-        <Main/>
+    <>
+      <div className={classes.Category_bar}>
+        <div className={classes.Category_menu1}>사원번호</div>
+        <div className={classes.Category_menu2}>성명</div>
+        <div className={classes.Category_menu3}>직급</div>
+        <div className={classes.Category_menu4}>전화번호</div>
+        <div className={classes.Category_menu5}>입사일자</div>
       </div>
-    </div>
+    </>
   )
 }
 export default WorkersList;

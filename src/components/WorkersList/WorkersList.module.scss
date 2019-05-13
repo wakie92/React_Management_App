@@ -1,19 +1,27 @@
-@import 'styles/utils.scss';
-
-.WorkersListBack{
-  @include ArrangeCenter(); 
-  height: 100%;
-  .Layout {
-    width: 90%;
-    height: 90%;
-    display: grid;
-    grid-template-areas: "a m m m";
-    grid-auto-columns: minmax(200px, 1fr);
-    box-shadow: 0px 0px 16px #E7ECEF;
+.Category_bar{
+  display: flex;
+  justify-content: space-around;  
+  width: 100%;
+  background-color: #D9E2E7;
+  color: #96A5B2;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 80px;
+  text-align: center;
+  
+  .Category_menu1{
+    width: 15%;    
   }
-  @media screen and (max-width : 768px){
-    .Layout {
-      grid-auto-columns: minmax(100px, 1fr);
-    }
+  .Category_menu2{
+    width: 15%;    
+  }
+  .Category_menu3{
+    width: 15%;    
+  }
+  .Category_menu4{
+    width: 30%;    
+  }
+  .Category_menu5{
+    width: 25%;    
   }
 }
