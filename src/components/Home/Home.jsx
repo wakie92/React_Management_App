@@ -7,10 +7,10 @@ const Home = () => {
       <div className={classes.Home_outbox}>
         <div className={classes.Home_input}>
           <div className={classes.Home_content}>
-            <ul>
-              <li className={classes.Home_message}>Welcome Back</li>
+            <ul className={classes.Home_message}>
+              <li className={classes.Home_message_li}>Welcome Back</li>
             </ul>
-            <div>                       
+            <div className={classes.abc}>                       
               <input className={classes.Home_input_tag} type="text" autoFocus placeholder="Email Address" />
               <input className={classes.Home_input_tag} type="password" placeholder="Password"/>
               <div>버튼자리</div>

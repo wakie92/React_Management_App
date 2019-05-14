@@ -4,24 +4,51 @@
   width: 100%;
   background-color: #D9E2E7;
   color: #96A5B2;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 80px;
+  line-height: 50px;
   text-align: center;
   
-  .Category_menu1{
+  .Category_ID{
     width: 15%;    
   }
-  .Category_menu2{
+  .Category_name{
     width: 15%;    
   }
-  .Category_menu3{
+  .Category_grade{
     width: 15%;    
   }
-  .Category_menu4{
+  .Category_phone{
     width: 30%;    
   }
-  .Category_menu5{
+  .Category_date{
+    width: 25%;    
+  }
+}
+.Workerlist_bar {
+  display: flex;
+  justify-content: space-around;  
+  width: 100%;
+  background-color: #ffffff;
+  color: #9ba7b4;
+  font-size: 15px;
+  line-height: 70px;
+  text-align: center;
+  border-bottom: 1px solid #e3ecf1;
+  .Content_ID{
+    width: 15%;    
+  }
+  .Content_name{
+    width: 15%;
+    color: #28a9ed ;  
+  }
+  .Content_grade{
+    width: 15%;    
+  }
+  .Content_phone{
+    width: 30%;    
+  }
+  .Content_date{
     width: 25%;    
   }
 }
