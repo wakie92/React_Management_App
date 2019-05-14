@@ -1,32 +1,32 @@
 @import 'styles/utils.scss';
 
-.SubHeaderWrapper{
-  display: flex;
+// .SubHeaderWrapper{
+//   display: flex;
 
-  .Line{
-    border-bottom: 0.5px solid $inputContent;
-    width: 100%;
-    height : 40px;  
-  }
-  .CurPage {
-    display : flex;
-    width : 200px;
-    justify-content: space-between;
-    // border-bottom: 0.5px solid $inputContent;
-    color : $curPageName;
-    font-weight: 600;
-    span {
-      border-bottom: 2px solid $curPageName;
-      letter-spacing: 2px;
-    }
-  }
-  @media screen and (max-width: 486px){
-    .CurPage{
-      width : 300px;
-      span {
-        font-size : 14px;
-        margin-top : 10px;
-      }
-    }
-  }
-}
+//   .Line{
+//     border-bottom: 0.5px solid $inputContent;
+//     width: 100%;
+//     height : 40px;  
+//   }
+//   .CurPage {
+//     display : flex;
+//     width : 200px;
+//     justify-content: space-between;
+//     // border-bottom: 0.5px solid $inputContent;
+//     color : $curPageName;
+//     font-weight: 600;
+//     span {
+//       border-bottom: 2px solid $curPageName;
+//       letter-spacing: 2px;
+//     }
+//   }
+//   @media screen and (max-width: 486px){
+//     .CurPage{
+//       width : 300px;
+//       span {
+//         font-size : 14px;
+//         margin-top : 10px;
+//       }
+//     }
+//   }
+// }
