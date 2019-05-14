@@ -2,7 +2,7 @@
 
 .LayoutBack {
   @include ArrangeCenter(); 
-  height: 100%;
+  margin : 30px 0;
   .Layout {
     height: 90%;
     width : 90%;
