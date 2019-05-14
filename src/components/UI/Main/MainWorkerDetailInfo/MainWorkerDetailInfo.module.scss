@@ -3,9 +3,10 @@
 .InputWrapper {
   width: calc(100% - 40px);
   margin: 20px 0;
-  height: 100%;
+  height: calc(100% - 120px);
   background-color: white;
   padding : 0 20px;
+  // overflow: scroll;
   .WrapperHeader{
     height: 50px;
     display: flex;
@@ -29,7 +30,6 @@
     }
     div:nth-child(2n) {
       color : $inputContent;
-      // background-color: aquamarine;
     }
     div:nth-child(2n-1) {
       color : $inputLetter;
@@ -39,19 +39,12 @@
       grid-row : span 2;
     }
   }
-  // @media screen and (max-width : 780px){
-  //   .InputForm {
-  //     grid-template-columns: repeat(2, minmax(80px, 100px));
-  //     grid-template-rows: repeat(12, 70px);
-  //     font-size : 18px;
-  //   }
-    
-  // }
   @media screen and (max-width : 780px){
     .InputForm {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: 100px 1fr;
       grid-template-rows: repeat(12, 70px);
       font-size : 18px;
+      
     }
     
   }

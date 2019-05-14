@@ -7,7 +7,7 @@ const MainWorkerInfoAttendance = () => {
     <div className = {classes.InputWrapper}> 
       <div className = {classes.WrapperHeader}>Worker Attendance</div>
       <div className = {classes.InputForm}>
-        <div className = {classes.YearVacation }>사용한연차</div>
+        <div className = {classes.YearVacation }><span>사용한연차</span></div>
         <div className = {attacedClassNames.join(' ')}>0</div>
         <div className = {classes.YearVacation}>사용가능연차</div>
         <div className = {attacedClassNames.join(' ')}>15</div>
