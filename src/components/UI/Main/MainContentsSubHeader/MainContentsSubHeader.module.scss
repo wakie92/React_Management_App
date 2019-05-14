@@ -20,4 +20,13 @@
       letter-spacing: 2px;
     }
   }
+  @media screen and (max-width: 486px){
+    .CurPage{
+      width : 300px;
+      span {
+        font-size : 14px;
+        margin-top : 10px;
+      }
+    }
+  }
 }
