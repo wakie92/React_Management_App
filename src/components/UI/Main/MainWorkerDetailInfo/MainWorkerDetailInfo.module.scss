@@ -2,8 +2,7 @@
 
 .InputWrapper {
   width: calc(100% - 40px);
-  margin: 20px 0;
-  height: calc(100% - 120px);
+  margin-top: 20px;
   background-color: white;
   padding : 0 20px;
   // overflow: scroll;
@@ -22,11 +21,13 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 100px);
     font-size : 20px;
+    word-break: break-all;
     div {
       border-bottom : 1px solid $inputUnderLine;
       display: flex;
       align-items: center;
       width: 100%;
+      background-size: cover; 
     }
     div:nth-child(2n) {
       color : $inputContent;
@@ -44,7 +45,7 @@
       grid-template-columns: 100px 1fr;
       grid-template-rows: repeat(12, 70px);
       font-size : 18px;
-      
+      word-break: break-all;
     }
     
   }
