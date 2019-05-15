@@ -8,7 +8,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, footer, button, section, form, input
   font-weight: 400;
   margin: 0;
   width : 100%;
-  height : 100%;
+  /* height : 100%; */
   padding: 0;
   border: 0;
   font-family: sans-serif cursive;
@@ -22,7 +22,6 @@ button {
 a {
   font-size: 1.2rem;
 }
-
 a, a:hover {
   text-decoration: none;
   color: black;
