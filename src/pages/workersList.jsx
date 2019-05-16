@@ -5,7 +5,7 @@ import Layout from 'components/UI/Layout';
 const workersList =  () => {
   return (
     <>
-      <Layout>
+      <Layout pageType = 'List'>
         <WorkersList/>
       </Layout>
     </>

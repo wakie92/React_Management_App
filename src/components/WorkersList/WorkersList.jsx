@@ -47,7 +47,50 @@ const WorkersList = () => {
           <div className={classes.Content_grade}>대리</div>
           <div className={classes.Content_phone}>010-2723-9323</div>
           <div className={classes.Content_date}>2019-03-01</div>
-        </div>        
+        </div>
+        <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div> <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div> <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div> <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div> <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div> <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div> <div className={classes.Workerlist_bar}>
+          <div className={classes.Content_ID}>12345</div>
+          <div className={classes.Content_name}>홍길동</div>
+          <div className={classes.Content_grade}>대리</div>
+          <div className={classes.Content_phone}>010-2723-9323</div>
+          <div className={classes.Content_date}>2019-03-01</div>
+        </div>         
       </div>
     </>
   )
