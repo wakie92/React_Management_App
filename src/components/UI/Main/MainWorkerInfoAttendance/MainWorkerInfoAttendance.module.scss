@@ -1,62 +1,56 @@
 @import 'styles/utils.scss';
 
 .InputWrapper {
-  width: calc(100% - 40px);
-  margin: 20px 0;
-  height: 100%;
-  background-color: white;
-  padding : 0 20px;
-  .WrapperHeader{
-    height: 50px;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 600;
-    color : $inputLetter;
+  @include infoWrapper();
+  .WrapperHeader {
+    @include infoHeader();
   }
   .InputForm {
-    height: calc(100% - 70px);
+    height: calc(100% - 60px);
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 100px);
-    font-size : 20px;
+    grid-template-columns: 30vw calc(100% - 30vw);
+    grid-template-rows: repeat(11, 50px);
+    grid-template-areas:  
+    "UY UYC"
+    "UY UYC"
+    "AY AYC"
+    "AY AYC"
+    "TY TYC"
+    "TY TYC";
     div {
       border-bottom : 1px solid $inputUnderLine;
       display: flex;
       align-items: center;
+      width: 100%;
+      background-size: cover; 
+      font-size : 15px;
+      word-break: break-all;
     }
     div:nth-child(2n) {
       color : $inputContent;
+      font-size : 20px;
     }
     div:nth-child(2n-1) {
       color : $inputLetter;
       font-weight: 700;
     }
-    .YearVacation {
-      grid-row: span 2;
+    .UsedYv {
+      grid-area : UY;
     }
-    .YearVacationCnt {
-      font-size : 40px;
+    .UsedYvCnt {
+      grid-area : UYC;
     }
-  }
-  @media screen and (max-width : 780px) {
-    .InputForm {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      grid-template-rows: unset;
-      grid-auto-rows: 80px;
-      height: unset;
-      div:nth-child(2n) {
-        color : $inputContent;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-      div:nth-child(2n-1) {
-        color : $inputLetter;
-        font-weight: 700;
-        font-size : 20px;
-      }
+    .AvailableYV {
+      grid-area : AY;
+    }
+    .AvailableYvCnt {
+      grid-area : AYC;
+    }
+    .TotalYv {
+      grid-area : TY;
+    }
+    .TotalYvCnt {
+      grid-area : TYC;
     }
   }
 }
