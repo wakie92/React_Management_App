@@ -4,7 +4,7 @@ import Notice from 'components/Notice';
 
 const notice = () => {
   return (
-    <Layout>
+    <Layout pageType = 'Notice'>
       <Notice/>
     </Layout>
   )
