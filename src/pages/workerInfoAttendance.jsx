@@ -3,7 +3,7 @@ import Layout from 'components/UI/Layout'
 import WorkerInfoAttComponent from 'components/WorkerInfoAttendance'
 const WorkerInfoAttendance = () => {
   return (
-    <Layout>
+    <Layout pageType = 'Attendance'>
       <WorkerInfoAttComponent/>
     </Layout>
   )
