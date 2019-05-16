@@ -26,39 +26,8 @@
   }
 }
 
-// .LayoutBack {
-//   @include ArrangeCenter(); 
-//   margin : 30px 0;
-//   .Layout {
-//     height: 90%;
-//     width : 90%;
-//     display: grid;
-//     grid-template-areas: 
-//     "a m m m"
-//     ;
-//     grid-auto-columns: minmax(auto, 1fr);
-//     box-shadow: 0px 0px 16px #E7ECEF;
-//   }
-  
-// }
-
-// @media screen and (max-width : 780px) {
-//   .LayoutBack {
-//     height: unset;
-//     margin : 20px 0;
-//       .Layout {
-//         display: grid;
-//         grid-template-areas: 
-//         "a"
-//         "m"
-//         "m"
-//         "m"
-//         "m"
-//         "m"
-//         "m"
-//         ;
-//         grid-auto-columns: minmax(100px, 1fr);
-//         grid-auto-rows: minmax(100px, 200px);
-//       }
-//     }
-// }
+.Notice {
+  .Layout {
+    margin : 20px 0;
+  }
+}

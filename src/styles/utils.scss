@@ -33,3 +33,12 @@ $inputContent : #9BA7B4;
   font-weight: 600;
   color : $inputLetter;
 }
+
+@mixin boardSetting {
+  display : grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+  grid-template-rows : 50px;
+  font-size : 15px;
+  text-align: center;
+  align-items: center;
+}
