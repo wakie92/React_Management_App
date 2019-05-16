@@ -5,7 +5,7 @@ import WorkerInfoComponent from 'components/WorkerInfoDetail';
 const workerInfoDetail =  () => {
   return (
     <>
-      <Layout>
+      <Layout pageType = 'Detail'>
         <WorkerInfoComponent/>
       </Layout>
     </>
