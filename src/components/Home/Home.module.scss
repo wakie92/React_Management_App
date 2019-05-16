@@ -38,7 +38,7 @@ img {
             font-size: 60px;
             font-weight: 900;
           }
-          @media(max-width: 1000px) {
+          @media(max-width: 1024px) {
             .Home_message_li {
               font-size: 40px;
               flex: 2;
@@ -67,7 +67,7 @@ img {
       width: 100%;
       border-radius: 0px 10px 10px 0px;
     }
-    @media(max-width: 800px) {
+    @media(max-width: 1024px) {
       .Home_input {
         border-radius: 10px 10px 10px 10px;
       }
