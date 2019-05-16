@@ -16,7 +16,27 @@
   .InputForm {
     height: calc(100% - 60px);
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 80px calc(100% - 80px);
+    grid-template-rows: repeat(12, 60px);
+    div {
+      border-bottom : 1px solid $inputUnderLine;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background-size: cover; 
+      font-size : 15px;
+      word-break: break-all;
+    }
+    div:nth-child(2n) {
+      color : $inputContent;
+    }
+    div:nth-child(2n-1) {
+      color : $inputLetter;
+      font-weight: 700;
+    }
+    .Img, .ProfileImg {
+      grid-row : span 2;
+    }
   }
 }
 
