@@ -1,5 +1,6 @@
 
 
+
 //컬러
 $backgroundColor : #B1BED9;
 $asideColor : #2A58AD;
@@ -16,4 +17,19 @@ $inputContent : #9BA7B4;
   display : flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin infoWrapper {
+  background-color: white;
+  margin: 20px 0;
+  height: 100%;
+  padding : 0 20px;
+}
+@mixin infoHeader {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color : $inputLetter;
 }

@@ -1,22 +1,14 @@
 @import 'styles/utils.scss';
 
 .InputWrapper {
-  background-color: white;
-  margin: 20px 0;
-  height: 100%;
-  padding : 0 20px;
+  @include infoWrapper();
   .WrapperHeader {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 600;
-    color : $inputLetter;
+    @include infoHeader();
   }
   .InputForm {
     height: calc(100% - 60px);
     display: grid;
-    grid-template-columns: 80px calc(100% - 80px);
+    grid-template-columns: 20vw calc(100% - 20vw);
     grid-template-rows: repeat(12, 60px);
     div {
       border-bottom : 1px solid $inputUnderLine;
@@ -38,56 +30,8 @@
       grid-row : span 2;
     }
   }
+  @media screen and (min-width : 1024px) {
+    display: none;
+  }
 }
 
-
-// .InputWrapper {
-//   width: calc(100% - 40px);
-//   margin-top: 20px;
-//   background-color: white;
-//   padding : 0 20px;
-//   // overflow: scroll;
-//   .WrapperHeader{
-//     height: 50px;
-//     display: flex;
-//     align-items: center;
-//     font-size: 18px;
-//     font-weight: 600;
-//     color : $inputLetter;
-//   }
-//   .InputForm {
-//     height: calc(100% - 70px);
-//     display: grid;
-//     width: 100%;
-//     grid-template-columns: repeat(4, 1fr);
-//     grid-template-rows: repeat(6, 100px);
-//     font-size : 20px;
-//     word-break: break-all;
-//     div {
-//       border-bottom : 1px solid $inputUnderLine;
-//       display: flex;
-//       align-items: center;
-//       width: 100%;
-//       background-size: cover; 
-//     }
-//     div:nth-child(2n) {
-//       color : $inputContent;
-//     }
-//     div:nth-child(2n-1) {
-//       color : $inputLetter;
-//       font-weight: 700;
-//     }
-//     .Img, .ProfileImg {
-//       grid-row : span 2;
-//     }
-//   }
-//   @media screen and (max-width : 780px){
-//     .InputForm {
-//       grid-template-columns: 100px 1fr;
-//       grid-template-rows: repeat(12, 70px);
-//       font-size : 18px;
-//       word-break: break-all;
-//     }
-    
-//   }
-// }
