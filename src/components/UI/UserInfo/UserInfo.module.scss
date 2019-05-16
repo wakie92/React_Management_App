@@ -3,22 +3,14 @@
 .UserInfoWrapper{
   @include ArrangeCenter();
   flex-direction: column;
-  height: 300px;
+  padding: 2vh;
   .Img {
-    width: 50%;
-    padding-bottom: 5px;
+    width: 30%;
   }
   .UserName {
     color : $workerName;
   }
   .UserGrade {
     color : $curPageName;
-  }
-  @media screen and (max-width : 486px) {
-    height: 100%;
-    .Img {
-      width: 30%;
-      height: 50%;
-    }
   }
 }

@@ -5,7 +5,7 @@ const MainWorkerDetailInfo = () => {
 
   return (
     <div className = {classes.InputWrapper}> 
-      <div className = {classes.WrapperHeader}>Job description1111</div>
+      <div className = {classes.WrapperHeader}>Job description</div>
       <div className = {classes.InputForm}>
         <div>사원번호</div>
         <div>123456</div>

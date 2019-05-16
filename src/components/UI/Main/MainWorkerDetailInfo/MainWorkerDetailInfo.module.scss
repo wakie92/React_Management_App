@@ -1,5 +1,26 @@
 @import 'styles/utils.scss';
 
+.InputWrapper {
+  background-color: white;
+  margin: 20px 0;
+  height: 100%;
+  padding : 0 20px;
+  .WrapperHeader {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    color : $inputLetter;
+  }
+  .InputForm {
+    height: calc(100% - 60px);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+  }
+}
+
+
 // .InputWrapper {
 //   width: calc(100% - 40px);
 //   margin-top: 20px;

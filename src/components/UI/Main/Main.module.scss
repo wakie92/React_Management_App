@@ -4,7 +4,19 @@
 main {
   flex : 4;
   background-color :white;
-  
+  display : flex;
+  flex-direction: column;
+  .SectionHeader {
+    flex : 1;
+  }
+  .SectionContents {
+    flex : 10;
+    background-color: $mainBackColor;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 30px;
+  }
 }
 // main {
   //   grid-area: m;
