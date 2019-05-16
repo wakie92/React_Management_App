@@ -4,7 +4,8 @@ import {
   Home,
   WorkersList,
   WorkerInfoDetail,
-  WorkerInfoAttendance
+  WorkerInfoAttendance,
+  Notice
 } from 'pages'
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path = '/workerslist' component = {WorkersList} />
             <Route exact path = '/workerinfo/detail' component = {WorkerInfoDetail} />
             <Route exact path = '/workerinfo/attendance' component = {WorkerInfoAttendance} />
+            <Route exact path = '/notice' component = {Notice} />
           </Switch>
       </>
     );

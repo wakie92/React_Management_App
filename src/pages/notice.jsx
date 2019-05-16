@@ -1,13 +1,13 @@
 import React from 'react';
 import Layout from 'components/UI/Layout';
-import Board from 'components/Board';
+import Notice from 'components/Notice';
 
-const board = () => {
+const notice = () => {
   return (
     <Layout>
-      <Board/>
+      <Notice/>
     </Layout>
   )
 }
 
-export default board;
+export default notice;
