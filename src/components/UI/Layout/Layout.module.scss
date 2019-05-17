@@ -9,13 +9,26 @@
     flex-direction: column;
   }
 }
+@media screen and (min-width : 1300px) and (min-height : 700px) {
+  .LayoutBack {
+      height: 100vh;
+  }
+}
+@media screen and (min-width : 1024px) {
+  .LayoutBack {
+      height: 100vh;
+    .Layout {
+      flex-direction: row;
+      margin : 0;
+    }
+  }
+}
 
 .Detail {
   .Layout {
     margin: 20px 0;
   }
 }
-
 .List {
   height: 100vh;
 }
@@ -27,6 +40,7 @@
 }
 
 .Notice {
+  height: 100%;
   .Layout {
     margin : 20px 0;
   }
