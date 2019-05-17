@@ -30,8 +30,19 @@
       grid-row : span 2;
     }
   }
-  @media screen and (min-width : 1024px) {
-    display: none;
+  @media screen and (min-width : 768px) {
+    // display: none;
+    .InputForm {
+      grid-template-columns: 1fr 2fr 1fr 2fr;
+      grid-template-rows: repeat(7, 60px);
+
+    }
+  }
+  @media screen and (min-width : 1300px) {
+    .InputForm {
+      grid-template-columns: 1fr 2fr 1fr 2fr;
+      grid-template-rows: repeat(6, 60px);
+    }
   }
 }
 
