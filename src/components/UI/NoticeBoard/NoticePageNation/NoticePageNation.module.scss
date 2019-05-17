@@ -1,0 +1,23 @@
+@import 'styles/utils.scss';
+
+hr {
+  border : 1px solid black;
+}
+.PageNationWrapper {
+  @include ArrangeCenter;
+  width : 100%;
+  height: 100px;
+  .PageNationBox {
+    width : 200px;
+    font-size : 25px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+  @media screen and (min-width : 1300px) {
+    .PageNationBox {
+      width : 300px;
+    }
+  }
+}

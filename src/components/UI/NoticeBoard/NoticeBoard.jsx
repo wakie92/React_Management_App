@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './NoticeBoard.module.scss';
 import NoticeItem from './NoticeItem';
+import PageNation from './NoticePageNation';
 const NoticeBoard = () => {
 
   return (
@@ -18,10 +19,8 @@ const NoticeBoard = () => {
         <NoticeItem/>
         <NoticeItem/>
         <NoticeItem/>
-        <NoticeItem/>
-        <NoticeItem/>
-        <NoticeItem/>
       </div>
+      <PageNation/>
     </div>
   )
 }
