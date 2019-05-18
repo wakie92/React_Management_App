@@ -41,4 +41,13 @@
         background-color: white;
       }
   }
+  @media screen and (min-width : 480px) {
+   .FunctionIcon {
+     width : 200px;
+     flex : unset;
+   } 
+  }
+}
+@media screen and (min-width : 1024px) and (min-height : 750px) {
+  margin: 10px 0 ;
 }
