@@ -1,0 +1,36 @@
+@import 'styles/utils.scss';
+
+.HeaderWrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  .Search { 
+    padding-left : 10px;
+    input {
+      font-size: 20px;
+      height: 100%;
+    }
+  }
+
+  .Navbar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    nav , button {
+      font-weight: 550;
+      height: 100%;
+    }
+    nav {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      background-color: rgb(106, 175, 245);
+      justify-content: center;
+    }
+    @media screen and (min-width : 480px) {
+      nav, button {
+        font-size : 15px;
+      }
+    }
+  }
+}
