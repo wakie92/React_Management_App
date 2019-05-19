@@ -559,6 +559,11 @@ module.exports = function(webpackEnv) {
           };
         },
       }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        Popper: ['popper.js', 'default'],   
+      }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.

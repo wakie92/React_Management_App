@@ -2,12 +2,10 @@ import React , {Component} from 'react';
 import classes from './EditorComponent.module.scss';
 import ReactSummernote from 'react-summernote';
 import 'react-summernote/dist/react-summernote.css'; // import styles
-import 'react-summernote/lang/summernote-ru-RU'; // you can import any other locale
- 
+import 'react-summernote/lang/summernote-ko-KR'; // you can import any other locale
+import 'bootstrap/dist/css/bootstrap.css';
 // Import bootstrap(v3 or v4) dependencies
-import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/dropdown';
-import 'bootstrap/js/dist/tooltip';
 
 class EditorComponent extends Component {
   onChange(content) {
@@ -17,22 +15,25 @@ class EditorComponent extends Component {
   render() {
     return (
       <ReactSummernote
+        className = {classes.EditorBox}
         value="Default value"
-        options={{
-          lang: 'ru-RU',
-          height: 350,
-          dialogsInBody: true,
+        options = {{
+          dialogsInBody: false,
+          lang : 'ko-KR',
+          height : 500,
+          popover : false,
           toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['para', ['ul', 'ol', 'paragraph']],
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['height', ['height']],
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview']]
-          ]
+          ],
+          tooltip: false
         }}
-        onChange={this.onChange}
+
       />
     );
   }
