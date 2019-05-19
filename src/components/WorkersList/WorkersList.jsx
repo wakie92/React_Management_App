@@ -7,9 +7,9 @@ const WorkersList = () => {
     <>
       <div className={classes.Workerlist_layout}>
         <div className={classes.Category_bar}>
-          <div className={classes.Category_ID}>사원번호</div>
           <div className={classes.Category_name}>성명</div>
           <div className={classes.Category_grade}>직급</div>
+          <div className={classes.Category_ID}>사원번호</div>
           <div className={classes.Category_phone}>전화번호</div>
           <div className={classes.Category_date}>입사일자</div>
         </div>
@@ -19,7 +19,7 @@ const WorkersList = () => {
           <div className={classes.Content_grade}>대리</div>
           <div className={classes.Content_info}></div>
           <div className={classes.Content_iconbox}>
-            <div className={classes.Content_ID}></div>
+            <div className={classes.Content_ID}>123</div>
             <div className={classes.Content_phone}></div>
             <div className={classes.Content_date}></div>
           </div>
