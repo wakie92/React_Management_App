@@ -14,27 +14,32 @@ class EditorComponent extends Component {
  
   render() {
     return (
-      <ReactSummernote
-        className = {classes.EditorBox}
-        value="Default value"
-        options = {{
-          dialogsInBody: false,
-          lang : 'ko-KR',
-          height : 500,
-          popover : false,
-          toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['height', ['height']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview']]
-          ],
-          tooltip: false
-        }}
-
-      />
+      <>
+        <input  type = "text" 
+                placeholder = "제목을 입력하세요" 
+                className = {classes.NoticeTitle}
+        />
+        <ReactSummernote
+          className = {classes.EditorBox}
+          value="Default value"
+          options = {{
+            dialogsInBody: false,
+            lang : 'ko-KR',
+            height : 400,
+            popover : false,
+            toolbar: [
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']],
+              ['height', ['height']],
+              ['table', ['table']],
+              ['insert', ['link', 'picture', 'video']],
+              ['view', ['fullscreen', 'codeview']]
+            ],
+            tooltip: false
+          }}
+        />
+      </>
     );
   }
 }
