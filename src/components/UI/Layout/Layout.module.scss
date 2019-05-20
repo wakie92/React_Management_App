@@ -41,6 +41,20 @@
     margin: 20px 0;
   }
 }
+@media screen and (min-width : 1300px) and (min-height : 700px) {
+  .Editor {
+      height: 100vh;
+  }
+}
+@media screen and (min-width : 1024px) and (min-height : 695px) {
+  .Editor {
+      height: 100vh;
+    .Layout {
+      flex-direction: row;
+      margin : 0;
+    }
+  }
+}
 .Attendance {
   .Layout {
     margin : 20px 0;

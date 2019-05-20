@@ -6,7 +6,7 @@ import 'react-summernote/lang/summernote-ko-KR'; // you can import any other loc
 import 'bootstrap/dist/css/bootstrap.css';
 // Import bootstrap(v3 or v4) dependencies
 import 'bootstrap/js/dist/dropdown';
-
+import Button from 'components/UI/Button';
 class EditorComponent extends Component {
   onChange(content) {
     console.log('onChange', content);
@@ -25,7 +25,7 @@ class EditorComponent extends Component {
           options = {{
             dialogsInBody: false,
             lang : 'ko-KR',
-            height : 400,
+            height : 300,
             popover : false,
             toolbar: [
               ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -39,6 +39,7 @@ class EditorComponent extends Component {
             tooltip: false
           }}
         />
+        <Button btnType = "post" btnValue = "게시" clicked = {() => alert('게시완료')}/>
       </>
     );
   }
