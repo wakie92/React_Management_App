@@ -6,13 +6,14 @@ import {
   WorkerInfoDetail,
   WorkerInfoAttendance,
   Notice,
-  Editor
+  Editor,
+  ErrorPage
 } from 'pages'
 
 class App extends Component {
   render() {
     return (
-      <>
+      <>        
           <Switch> 
             <Route exact path = '/' component = {Home} />
             <Route exact path = '/workerslist' component = {WorkersList} />
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path = '/workerinfo/attendance' component = {WorkerInfoAttendance} />
             <Route exact path = '/notice' component = {Notice} />
             <Route exact path = '/notice/post' component = {Editor} />
+            <Route exact path = '/errorpage' component = {ErrorPage} />
           </Switch>
       </>
     );
