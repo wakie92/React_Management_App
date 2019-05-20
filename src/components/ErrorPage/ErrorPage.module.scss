@@ -1,0 +1,10 @@
+@import "styles/utils.scss";
+
+.Error_layout {
+    display: flex;
+    @include ArrangeCenter();
+    width: 50%;
+    .textbox{
+      font-size: 40px;
+    }
+}

@@ -5,19 +5,21 @@ import {
   WorkersList,
   WorkerInfoDetail,
   WorkerInfoAttendance,
-  Notice
+  Notice,
+  ErrorPage
 } from 'pages'
 
 class App extends Component {
   render() {
     return (
-      <>
+      <>        
           <Switch> 
             <Route exact path = '/' component = {Home} />
             <Route exact path = '/workerslist' component = {WorkersList} />
             <Route exact path = '/workerinfo/detail' component = {WorkerInfoDetail} />
             <Route exact path = '/workerinfo/attendance' component = {WorkerInfoAttendance} />
             <Route exact path = '/notice' component = {Notice} />
+            <Route exact path = '/errorpage' component = {ErrorPage} />
           </Switch>
       </>
     );

@@ -7,69 +7,7 @@
   margin-bottom: 20px;
   .Category_bar {
     display: none;  
-  }
-  .Workerlist_bar{
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border-radius: 10px 10px 10px 10px;
-    @include ArrangeCenter();
-    margin-top: 20px;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    .Content_photo {      
-      width: 150px;
-      height: 150px;
-      background: red;
-      border-radius: 50% 50% 50% 50%;
-      margin-top: 20px;
-    }
-    .Content_name {
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
-      color: #4bb8ef;
-      margin-top: 10px;
-    }
-    .Content_grade {
-      text-align: center;
-      font-size: 15px;
-      font-weight: 700;
-      margin-top: 10px;
-    }
-    .Content_info {
-      width: 80%;
-      border: 1px solid #E6E6EC;
-      height: 30px;
-      margin-top: 10px;
-    }
-    .Content_iconbox {
-      display: flex;
-      justify-content: space-around;
-      width: 50%;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      .Content_ID {
-        width: 30px;
-        height: 30px;
-        background: #4bb8ef;
-        border-radius: 50% 50% 50% 50%;
-      }
-      .Content_phone {
-        width: 30px;
-        height: 30px;
-        background: #4bb8ef;
-        border-radius: 50% 50% 50% 50%;
-      }
-      .Content_date {
-        width: 30px;
-        height: 30px;
-        background: #4bb8ef;
-        border-radius: 50% 50% 50% 50%;
-      }
-    }
-  }
+  }  
 }
 
 @media (min-width: 768px) {
@@ -82,7 +20,6 @@
 @media (min-width: 1024px) {
   .Workerlist_layout {
     display: inline;
-    margin-bottom: 40px;
     .Category_bar{
       display: flex;
       justify-content: space-around;  
@@ -108,67 +45,7 @@
       .Category_date{
         width: 25%;    
       }
-    }
-    .Workerlist_bar {
-      display: flex;
-      justify-content: space-around;
-      flex-direction: row; 
-      width: 100%;
-      background-color: #ffffff;
-      color: #9ba7b4;
-      font-size: 15px;
-      line-height: 80px;
-      text-align: center;
-      margin-top: 0px;
-      border-bottom: 1px solid #e3ecf1;
-      border-radius: 0;
-      .Content_photo {
-        display: none;
-      }      
-      .Content_name{
-        width: 15%;
-        font-size: 15px;
-        font-weight: 0;
-        color: #28a9ed;
-        margin-top: 0px;  
-      }
-      .Content_grade{
-        width: 15%;
-        font-size: 15px;
-        font-weight: 0;
-        margin-top: 0px;
-      }
-      .Content_info{
-        display: none;
-      }
-      .Content_iconbox{
-        display: inherit;
-        width: 70%;
-        margin: 0;
-        height: auto;
-        .Content_ID{
-          width: 21%;
-          height: auto;
-          background: none;
-          border-radius: 0;
-          font-size: 15px;   
-        }
-        .Content_phone{  
-          width: 43%;
-          height: auto;
-          background: none;
-          border-radius: 0;
-          font-size: 15px;
-        }
-        .Content_date{   
-          width: 36%;
-          height: auto;
-          background: none;
-          border-radius: 0;
-          font-size: 15px;
-        }
-      }
-    }
+    }    
   } 
 }
 
