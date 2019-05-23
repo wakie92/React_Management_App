@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './Home.module.scss';
+import Button from '../UI/Button/Button';
+
 
 const Home = () => {
   return (
@@ -13,12 +15,12 @@ const Home = () => {
             <div className={classes.abc}>                       
               <input className={classes.Home_input_tag} type="text" autoFocus placeholder="Email Address" />
               <input className={classes.Home_input_tag} type="password" placeholder="Password"/>
-              <div>버튼자리</div>
+              <Button />
             </div>            
           </div>
         </div>
         <div className={classes.Picture}>
-          <img src="https://dspncdn.com/a1/media/236x/ed/d7/da/edd7dad1071f3c982dd9efab0b68af41.jpg"></img>
+          <img src="https://dspncdn.com/a1/media/236x/ed/d7/da/edd7dad1071f3c982dd9efab0b68af41.jpg" alt="Mistake"></img>
         </div>
       </div>
     </div>

@@ -5,9 +5,9 @@ const ErrorPage = () => {
 
   return (
     <>
-      <div classname={classes.Error_layout}>
+      <div className={classes.Error_layout}>
         <div className={classes.textbox}>
-          abcahslfhaslkfhalhfaklfdhalshfdahkfhsalfhas
+          404 Error <br/> Page not found
         </div>
       </div>
     </>

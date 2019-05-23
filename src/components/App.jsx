@@ -21,7 +21,7 @@ class App extends Component {
             <Route exact path = '/workerinfo/attendance' component = {WorkerInfoAttendance} />
             <Route exact path = '/notice' component = {Notice} />
             <Route exact path = '/notice/post' component = {Editor} />
-            <Route exact path = '/errorpage' component = {ErrorPage} />
+            <Route component = {ErrorPage} />
           </Switch>
       </>
     );
