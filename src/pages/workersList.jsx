@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkersList from 'components/WorkersList';
+import WorkersListContainer from 'containers/WorkerListContainer';
 import Layout from 'components/UI/Layout';
 import MainContentsHeader from 'components/UI/Main/MainContentsHeader';
 
@@ -8,7 +8,7 @@ const workersList =  () => {
     <>
       <Layout pageType = 'List'>
         <MainContentsHeader/>
-        <WorkersList/>
+        <WorkersListContainer/>
       </Layout>
     </>
   )

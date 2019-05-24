@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActioncreators }from 'redux';
-import * as workerListActions from 'store/modules/user';
-import WorkerList from 'components/WorkerList';
+// import { connect } from 'react-redux';
+// import { bindActioncreators }from 'redux';
+// import * as workerListActions from 'store/modules/user';
+import WorkerList from 'components/WorkersList';
+import workers from 'libs/staffInfo';
 class WorkerListContainer extends Component {
 
+  state = {
+    staffs : []
+  }
 
+  componentDidMount() {
+    this.setState({staffs : workers})
+  }  
   render() {
+    console.log(this.state.staffs);
+    const { staffs } = this.state;
     return (
-      <WorkerList/>
+      <WorkerList
+        staffList = {staffs}
+      />  
     );
   }
 }
 
-export default connect((state) =>({
-
-}),
-  (dispatch) => ({
-    WorkerListActions : bindActioncreators(workerListActions, dispatch )
-}))(WorkerListContainer);
+export default WorkerListContainer;
