@@ -8,18 +8,23 @@ const ListInfo = ({id,selectedInfo, clicked, name, grade, joinDate, email}) => {
         <div className={classes.Content_photo}></div>
         <div className={classes.Content_name}>{name}</div>
         <div className={classes.Content_grade}>{grade}</div>
-        <div className={classes.Content_info}>{selectedInfo}</div>
+        { selectedInfo 
+          ? <div className={classes.Content_info}>
+              {selectedInfo}
+            </div>
+          : null
+        }
         <div className={classes.Content_iconbox}>
           <div className={classes.Content_ID} 
-               onClick = {()=> clicked(id,"id")}>
+               onClick = {()=> clicked(id,"사원번호")}>
             {id}
           </div>
           <div className={classes.Content_phone} 
-               onClick = {()=> clicked(email,"email")}>
+               onClick = {()=> clicked(email,"이메일")}>
             {email}
           </div>
           <div className={classes.Content_date} 
-               onClick = {()=> clicked(joinDate,"joinDate")}>
+               onClick = {()=> clicked(joinDate,"입사날짜")}>
             {joinDate}
           </div>
         </div>

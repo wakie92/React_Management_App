@@ -5,38 +5,46 @@ import { type } from 'os';
 class WorkerInfoContainer extends Component {
 
   state = {
-    selectedInfoJsx : null
+    selectedInfoJsx : null,
+    selectedInfoType : ''
   }
   style  = {
     'display' : 'flex',
-    'justify-content' : 'center',
-    'align-items' : 'center'
+    'justifyContent' : 'center',
+    'alignItems' : 'center',
+    'fontWeight' : '550'
+  }
+  makeInfoBox = (info, infoType) => {
+    let infoBox  = (
+      <div style = {this.style}> {infoType} : {info}</div>
+      )
+    let { selectedInfoType } = this.state;
+    if(selectedInfoType === '' || selectedInfoType !== infoType) {
+      return this.setState({
+        selectedInfoJsx : infoBox,
+        selectedInfoType : infoType
+      })
+    } else if(selectedInfoType === infoType) {
+      return this.setState ({
+        selectedInfoJsx : null,
+        selectedInfoType: ''
+      })
+    } 
   }
   onShowInfoBox = (info,infoType) => {
-    let infoBox = ''
       switch(infoType) {
-        case "id" : 
-        infoBox  = (
-            <div style = {this.style}> 사원번호 : {info}</div>
-             );
-          return this.setState({selectedInfoJsx : infoBox})
-        case "email" : 
-        infoBox  = (
-            <div style = {this.style}> 이메일 : {info}</div>
-             );
-          return this.setState({selectedInfoJsx : infoBox})
-        case "joinDate" : 
-        infoBox  = (
-            <div style = {this.style}> 입사날짜 : {info}</div>
-             );
-          return this.setState({selectedInfoJsx : infoBox})
+        case "사원번호" : 
+        case "이메일" : 
+        case "입사날짜" :
+          return this.makeInfoBox(info, infoType);
         default : 
           return null;
       }
   }
   render() {
     const {staff} = this.props;
-       
+    const { onShowInfoBox } = this;
+    const { selectedInfoJsx } = this.state;
     return (
       <ListInfo
       id = {staff.id}
@@ -45,8 +53,8 @@ class WorkerInfoContainer extends Component {
       grade = {staff.grade}
       joinDate = {staff.join_date}
       email = {staff.email}
-      clicked = {this.onShowInfoBox}
-      selectedInfo = {this.state.selectedInfoJsx}
+      clicked = {onShowInfoBox}
+      selectedInfo = {selectedInfoJsx}
     />
     );
   }
