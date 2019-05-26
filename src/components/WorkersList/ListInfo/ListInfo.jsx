@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from './ListInfo.module.scss';
-
+import {TiInfoLarge, TiMail, TiCalendar} from 'react-icons/ti';
 const ListInfo = ({id,selectedInfo, clicked, name, grade, joinDate, email}) => {
+  
   return (
     <>
       <div className={classes.Workerlist_bar}>
@@ -17,15 +18,15 @@ const ListInfo = ({id,selectedInfo, clicked, name, grade, joinDate, email}) => {
         <div className={classes.Content_iconbox}>
           <div className={classes.Content_ID} 
                onClick = {()=> clicked(id,"사원번호")}>
-            {id}
+            <TiInfoLarge className = {classes.Icons}/> <span>{id}</span>
           </div>
           <div className={classes.Content_phone} 
                onClick = {()=> clicked(email,"이메일")}>
-            {email}
+            <TiMail className = {classes.Icons}/> <span>{email}</span>
           </div>
           <div className={classes.Content_date} 
                onClick = {()=> clicked(joinDate,"입사날짜")}>
-            {joinDate}
+            <TiCalendar className = {classes.Icons}/> <span>{joinDate}</span>
           </div>
         </div>
       </div>

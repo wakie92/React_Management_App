@@ -43,23 +43,18 @@
       width: 50%;
       margin-top: 10px;
       margin-bottom: 20px;
-      .Content_ID {
+      .Content_ID, .Content_phone, .Content_date {
         width: 30px;
         height: 30px;
         background: #4bb8ef;
         border-radius: 50% 50% 50% 50%;
-      }
-      .Content_phone {
-        width: 30px;
-        height: 30px;
-        background: #4bb8ef;
-        border-radius: 50% 50% 50% 50%;
-      }
-      .Content_date {
-        width: 30px;
-        height: 30px;
-        background: #4bb8ef;
-        border-radius: 50% 50% 50% 50%;
+        @include ArrangeCenter();
+        font-size : 20px;
+        color : white;
+        cursor: pointer;
+        span {
+          display: none;
+        }
       }
     }
   }
@@ -102,26 +97,29 @@
           width: 70%;
           margin: 0;
           height: auto;
-          .Content_ID{
-            width: 21%;
+          .Content_ID, .Content_phone, .Content_date {
             height: auto;
             background: none;
             border-radius: 0;
-            font-size: 15px;   
+            font-size: 15px; 
+            color : black;
+            cursor: none;
+            .Icons {
+              display: none;
+            }
+            span {
+              display: inline;
+            }
+          }
+          .Content_ID{
+            width: 21%;
           }
           .Content_phone{  
             width: 43%;
-            height: auto;
-            background: none;
-            border-radius: 0;
-            font-size: 15px;
           }
           .Content_date{   
             width: 36%;
-            height: auto;
-            background: none;
-            border-radius: 0;
-            font-size: 15px;
+
           }
         }
       }

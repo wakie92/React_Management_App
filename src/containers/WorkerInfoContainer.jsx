@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ListInfo from 'components/WorkersList/ListInfo';
-import { type } from 'os';
 
 class WorkerInfoContainer extends Component {
 
