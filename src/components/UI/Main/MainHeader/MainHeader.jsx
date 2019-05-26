@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './MainHeader.module.scss';
-
-
-const MainHeader = () => {
+import { NavLink } from 'react-router-dom';
+import Button from 'components/UI/Button'
+const MainHeader = ({working, leaving}) => {
 
   return (
     <div className = {classes.HeaderWrapper}>
@@ -11,10 +11,10 @@ const MainHeader = () => {
       </div>
       <div className = {classes.Navbar}>
         <nav>
-          <span>공지사항</span>
+        <span><NavLink exact to = '/notice'>공지사항</NavLink></span>
         </nav>
-        <button>출근</button>
-        <button>퇴근</button>
+        <Button btnType = 'working' clicked = {working} btnValue = "출근"/>
+        <Button btnType = 'leaving' clicked = {leaving} btnValue = "퇴근"/>
       </div>
     </div>
   )

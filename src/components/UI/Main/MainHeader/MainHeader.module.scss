@@ -26,6 +26,9 @@
       align-items: center;
       background-color: rgb(106, 175, 245);
       justify-content: center;
+      a {
+        font-weight: 550;
+      }
     }
     @media screen and (min-width : 480px) {
       nav, button {
