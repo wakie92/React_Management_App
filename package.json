@@ -141,5 +141,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^5.2.1",
+    "craco-plugin-react-hot-reload": "0.0.3",
+    "react-hot-loader": "^4.8.8"
   }
 }

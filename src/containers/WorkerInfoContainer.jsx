@@ -54,6 +54,7 @@ class WorkerInfoContainer extends Component {
       email = {staff.email}
       clicked = {onShowInfoBox}
       selectedInfo = {selectedInfoJsx}
+      staffInfo = {staff}
     />
     );
   }

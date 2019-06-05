@@ -1,11 +1,14 @@
 import React from 'react';
 import classes from './ListInfo.module.scss';
 import {TiInfoLarge, TiMail, TiCalendar} from 'react-icons/ti';
+import { NavLink } from 'react-router-dom';
 const ListInfo = ({id,selectedInfo, clicked, name, grade, joinDate, email}) => {
   
   return (
     <>
-      <div className={classes.Workerlist_bar}>
+      <NavLink exact to ={`/workerinfo/detail/${id}`} >
+        <div className={classes.Workerlist_bar}>
+
         <div className={classes.Content_photo}></div>
         <div className={classes.Content_name}>{name}</div>
         <div className={classes.Content_grade}>{grade}</div>
@@ -30,6 +33,7 @@ const ListInfo = ({id,selectedInfo, clicked, name, grade, joinDate, email}) => {
           </div>
         </div>
       </div>
+      </NavLink>
     </>
   )
 }

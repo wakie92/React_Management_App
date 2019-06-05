@@ -67,3 +67,8 @@
     margin : 20px 0;
   }
 }
+@media screen and (min-width : 1300px) and (min-height : 1000px) {
+  .Notice {
+    height: 100vh;
+  }
+}

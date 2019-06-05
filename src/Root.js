@@ -3,7 +3,7 @@ import App from 'components/App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configure from 'store/configure';
-
+import { hot } from 'react-hot-loader';
 const store = configure();
 
 function Root() {
@@ -16,4 +16,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default hot(module)(Root);
