@@ -3,20 +3,22 @@
 
 
 img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0px 10px 10px 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px 10px 10px 0px;
 }
 
 .Home_box {
   @include ArrangeCenter();
   height: 100vh;
-  .Home_outbox{
+
+  .Home_outbox {
     display: flex;
     justify-content: center;
     width: 80%;
     height: 80%;
     box-shadow: 0 0 10px #C8D3E0;
+
     .Home_input {
       display: flex;
       justify-content: center;
@@ -24,54 +26,53 @@ img {
       background-color: white;
       border-radius: 10px 0px 0px 10px;
       width: 100%;
+
       .Home_content {
         display: flex;
         flex-direction: column;
         width: 60%;
         height: 60%;
+
         .Home_message {
           display: flex;
           flex: 3;
-          justify-content: center; 
+          justify-content: center;
+
           .Home_message_li {
             text-align: center;
             font-size: 60px;
             font-weight: 900;
           }
+
           @media(max-width: 1024px) {
             .Home_message_li {
               font-size: 40px;
               flex: 2;
             }
-          }   
-        }        
-        .abc {
+          }
+        }
+
+        .Home_inputbox {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
           flex: 1;
           width: 100%;
-          .Home_input_tag{            
-            width: 100%;
-            height: 60%;
-            font-size: 18px;
-            margin-bottom: 3%;
-            border: 1px solid #E6E6EC;          
-          }::placeholder {
-            color: #B4B3BE;
-          }
         }
-      }      
+      }
     }
+
     .Picture {
       width: 100%;
       border-radius: 0px 10px 10px 0px;
     }
+
     @media(max-width: 1024px) {
       .Home_input {
         border-radius: 10px 10px 10px 10px;
       }
-      .Picture{
+
+      .Picture {
         display: none;
       }
     }
