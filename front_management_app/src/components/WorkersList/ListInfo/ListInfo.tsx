@@ -29,8 +29,12 @@ const ListInfo: React.FC<ListInfoProps> = props => {
     <>
       <div className={classes.Workerlist_bar}>
         <div className={classes.Content_photo} />
-        <NavLink exact to={`/workerinfo/detail/${id}`}>
-          <div className={classes.Content_name}>{name}</div>
+        <NavLink
+          exact
+          to={`/workerinfo/detail/${id}`}
+          className={classes.Content_name}
+        >
+          {name}
         </NavLink>
         <div className={classes.Content_grade}>{grade}</div>
         {selectedInfo ? (
