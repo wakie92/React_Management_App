@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './NoticeItem.module.scss';
 
 const NoticeItem: React.FC = () => {
-
+  
   return (
     <>
       <div className = {classes.NoticeItemWrapper}>
