@@ -1,21 +1,22 @@
 import React from 'react';
 import classes from './NoticePageNation.module.scss';
 
-const NoticePageNation: React.FC = () => {
-
-  return(
+interface PageNationProps {
+  changingMode: JSX.Element;
+}
+const NoticePageNation: React.FC<PageNationProps> = ({ changingMode }) => {
+  let styleOnPageNation:Object =
+    changingMode.props.children.length === 5
+      ? { backgroundColor: 'white' }
+      : { backgroundColor: '#35AAE7', alignItems:"center" };
+  return (
     <>
-      {/* <hr/> */}
-      <div className = {classes.PageNationWrapper}>
-        <div className = {classes.PageNationBox}>
-          <span> &#60;&#60; </span>
-          <span> &#60; </span>
-          <span>  1 </span>
-          <span> &#62; </span>
-          <span> &#62;&#62; </span>
+      <div className={classes.PageNationWrapper}>
+        <div className={classes.PageNationBox} style={styleOnPageNation}>
+          {changingMode}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 export default NoticePageNation;
