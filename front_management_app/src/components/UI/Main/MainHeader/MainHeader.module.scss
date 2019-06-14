@@ -19,12 +19,12 @@
     nav , button {
       font-weight: 550;
       height: 100%;
+      background-color: rgb(221, 221, 221);
     }
     nav {
       display: flex;
       cursor: pointer;
       align-items: center;
-      background-color: rgb(106, 175, 245);
       justify-content: center;
       a {
         font-weight: 550;

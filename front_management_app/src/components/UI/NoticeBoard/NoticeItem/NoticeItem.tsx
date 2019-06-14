@@ -1,17 +1,23 @@
 import React from 'react';
 import classes from './NoticeItem.module.scss';
+import { NavLink } from 'react-router-dom';
 
-const NoticeItem: React.FC = () => {
-  
+interface NoticeItemProps {
+  item: any;
+  key: number;
+}
+const NoticeItem: React.FC<NoticeItemProps> = ({ item }) => {
   return (
     <>
-      <div className = {classes.NoticeItemWrapper}>
-        <span className = {classes.NoticeTitle}>제모긴아런이런이ㅏ런ㅇ린어린어린ㅇ</span>
-        <span className = {classes.NoticeDate}>2019.05.10</span>
+      <div className={classes.NoticeItemWrapper}>
+        <NavLink to = {`/notice/${item.id}`}>
+          <span className={classes.NoticeTitle}>{item.title}</span>
+        </NavLink>
+        <span className={classes.NoticeDate}>{item.created_at}</span>
       </div>
-      <hr className = {classes.NoticeItemHr}/>
+      <hr className={classes.NoticeItemHr} />
     </>
-  )
-}
+  );
+};
 
 export default NoticeItem;
