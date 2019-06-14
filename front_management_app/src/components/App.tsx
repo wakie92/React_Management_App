@@ -20,6 +20,7 @@ class App extends Component {
             <Route exact path = '/workerinfo/detail/:id' component = {WorkerInfoDetail} />
             <Route exact path = '/workerinfo/attendance/:id' component = {WorkerInfoDetail} />
             <Route exact path = '/notice' component = {Notice} />
+            <Route exact path = '/notice/:id' component = {Notice} />
             <Route exact path = '/notice/post' component = {Editor} />
             <Route component = {ErrorPage} />
           </Switch>
