@@ -1,10 +1,43 @@
 import React from 'react';
 import NoticeBoard from 'components/UI/NoticeBoard';
-const Board: React.FC = () => {
-  return (
-    <>
-      <NoticeBoard/>
-    </>
-  )
+import NoticeItem from '../UI/NoticeBoard/NoticeItem';
+import NoticeItemContent from '../UI/NoticeBoard/NoticeItemContent';
+
+interface NoticeBoardProps {
+  NoticeData: any;
+  matchData: any;
 }
-export default Board
+const Board: React.FC<NoticeBoardProps> = ({ NoticeData, matchData }) => {
+  let noticeItems: JSX.Element;
+  let noticeIdx = matchData.params.id;
+  if (!noticeIdx) {
+    noticeItems = NoticeData.map((item: any) => {
+      return <NoticeItem item={item} key={item.id} />;
+    });
+  } else {
+    const {
+      id,
+      title,
+      contents,
+      view,
+      user_id,
+      created_at,
+      updated_at,
+    } = NoticeData[noticeIdx];
+    noticeItems = (
+      <NoticeItemContent
+        id={id}
+        title={title}
+        contents={contents}
+        view={view}
+        user_id={user_id}
+        created_at={created_at}
+        updated_at={updated_at}
+      />
+    );
+  }
+  return (
+      <NoticeBoard noticeIdx = {noticeIdx}>{noticeItems}</NoticeBoard>
+  );
+};
+export default Board;
