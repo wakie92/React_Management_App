@@ -7,9 +7,7 @@ interface WorkerListProps {
 }
 
 const WorkersList: React.FC<WorkerListProps> = ({ staffList }) => {
-  console.log(staffList);
   const listOfStaff: React.FC = staffList.map((staff: any) => {
-    console.log(staff);
     return <ListInfoContainer {...staff} key={staff.id} />;
   });
   return (
