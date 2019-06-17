@@ -3,7 +3,13 @@
 
 .BoardWrapper {
   @include infoWrapper();
-  padding : 0 10px;
+  padding : 20px 10px;
+  .PostNotice {
+    border-radius: 10px;
+    padding : 5px;
+    border : 1px solid black;
+    width : unset;
+  }
   .BoardHeader {
     height: 100px;
     font-weight: 600;

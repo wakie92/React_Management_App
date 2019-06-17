@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import classes from './NoticeBoard.module.scss';
 import PageNation from './NoticePageNation';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 interface BoardProps {
   noticeIdx: number;
 }
 const NoticeBoard: React.FC<BoardProps> = ({ children, noticeIdx }) => {
   return (
     <div className={classes.BoardWrapper}>
+      <NavLink exact to={`/notice/post`}>
+        <span className={classes.PostNotice}>글쓰기</span>
+      </NavLink>
       <div className={classes.BoardHeader}>사원여러분께 알려드립니다.</div>
       <div className={classes.BoardList}>{children}</div>
       <PageNation
@@ -21,7 +24,9 @@ const NoticeBoard: React.FC<BoardProps> = ({ children, noticeIdx }) => {
               <span> &#62;&#62; </span>
             </>
           ) : (
-            <NavLink to = {`/notice`}><p>목록으로</p></NavLink>
+            <NavLink to={`/notice`}>
+              <p>목록으로</p>
+            </NavLink>
           )
         }
       />
