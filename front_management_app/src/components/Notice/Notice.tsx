@@ -9,7 +9,8 @@ interface NoticeBoardProps {
 }
 const Board: React.FC<NoticeBoardProps> = ({ NoticeData, matchData }) => {
   let noticeItems: JSX.Element;
-  let noticeIdx = matchData.params.id;
+  let noticeIdx: number = matchData.params.id;
+  console.log(matchData);
   if (!noticeIdx) {
     noticeItems = NoticeData.map((item: any) => {
       return <NoticeItem item={item} key={item.id} />;
@@ -36,8 +37,6 @@ const Board: React.FC<NoticeBoardProps> = ({ NoticeData, matchData }) => {
       />
     );
   }
-  return (
-      <NoticeBoard noticeIdx = {noticeIdx}>{noticeItems}</NoticeBoard>
-  );
+  return <NoticeBoard noticeIdx={noticeIdx}>{noticeItems}</NoticeBoard>;
 };
 export default Board;
