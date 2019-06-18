@@ -28,9 +28,14 @@ class App extends Component {
             component={WorkerInfoDetail}
           />
           <Route exact path="/notice" component={Notice} />
+<<<<<<< HEAD
           <Route exact path="/notice/post" component={Editor} />
           <Route exact path="/notice/:id" component={Notice} />
           <Route exact path="/register" component={WorkerRegister} />
+=======
+          <Route exact path="/notice/:id" component={Notice} />
+          <Route exact path="/notice/post" component={Editor} />
+>>>>>>> 24f613179ee77b02a83a42bfe86d7a6cee97b146
           <Route component={ErrorPage} />
         </Switch>
       </>
