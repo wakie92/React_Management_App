@@ -7,27 +7,35 @@ const EditorComponent: React.FC = () => {
   const { TextArea } = Input;
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
-  let [inWidth, setinWidth] = useState();
-  const widthTest = useRef(null);
+  let [inWidth, setinWidth] = useState<number |undefined>();
+  const widthTest = useRef<HTMLDivElement>(null);
+
   const onChangeTitle = useCallback((e: any) => {
     console.log(title)
     setTitle(e.target.value);
   }, [title]);
+
   const onChangeContent = useCallback((e: any) => {
     console.log( content)
     setContent(e.target.value);
   }, [content]);
-  useEffect(() => {
+
+  const getWidth = () => {
     if(widthTest.current) {
-    //  widthTest.current.querySelector('antd-input')
+      let {width} = widthTest.current.getBoundingClientRect()
+      console.log(width);
+      return setinWidth(width)
     }
-    setinWidth(window.innerWidth)
-  },[widthTest]);
+  }
+  useEffect(() => {
+    console.log(inWidth);
+    getWidth();
+  },[inWidth]);
+  
   return (
     <>
-      <div className={classes.TextAreaWrpper}>
+      <div className={classes.TextAreaWrpper} ref = {widthTest}>
         <TextArea
-          ref = {widthTest}
           placeholder="제목을 입력해주세요"
           autosize
           onChange={onChangeTitle}
