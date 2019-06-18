@@ -4,7 +4,7 @@ import {
   Home,
   WorkersList,
   WorkerInfoDetail,
-  WorkerInfoAttendance,
+  WorkerRegister,
   Notice,
   Editor,
   ErrorPage,
@@ -30,6 +30,7 @@ class App extends Component {
           <Route exact path="/notice" component={Notice} />
           <Route exact path="/notice/post" component={Editor} />
           <Route exact path="/notice/:id" component={Notice} />
+          <Route exact path="/register" component={WorkerRegister} />
           <Route component={ErrorPage} />
         </Switch>
       </>
