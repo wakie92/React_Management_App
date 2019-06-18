@@ -26,6 +26,9 @@
     justify-content: space-around;
     align-items: center;
     flex : 1;
+    a {
+      width : unset;
+    }
     .WorkerStatus {
         border-radius: 20px;
         border: 1px solid $workerName;

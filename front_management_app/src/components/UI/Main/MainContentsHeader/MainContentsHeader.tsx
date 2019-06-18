@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './MainContentsHeader.module.scss';
+import { NavLink } from 'react-router-dom';
 const MainContentsHeader: React.FC = () => {
   return (
     <div className = {classes.ContentsHeader}>
@@ -8,6 +9,7 @@ const MainContentsHeader: React.FC = () => {
         <span className = {classes.WorkerName}>Seo HyunDeock</span>
       </div>
       <div className = {classes.FunctionIcon}>
+        <NavLink to = {`/register`}><span>사원등록</span></NavLink>
         <div className = {classes.WorkerStatus}>
           * active
         </div>
