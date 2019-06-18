@@ -1,0 +1,53 @@
+@import 'styles/utils.scss';
+
+.InputWrapper {
+  @include infoWrapper();
+  .WrapperHeader {
+    @include infoHeader();
+  }
+  .InputForm {
+    height: calc(100% - 60px);
+    display: grid;
+    grid-template-columns: 20vw calc(100% - 20vw);
+    grid-template-rows: repeat(20, 40px);
+    div {
+      border-bottom : 1px solid $inputUnderLine;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background-size: cover; 
+      font-size : 2.5vw;
+      word-break: break-all;
+    }
+    div:nth-child(2n) {
+      color : $inputContent;
+    }
+    div:nth-child(2n-1) {
+      color : $inputLetter;
+      font-weight: 700;
+    }
+    .Img, .ProfileImg {
+      grid-row : span 2;
+    }
+  }
+  @media screen and (min-width : 768px) {
+    // display: none;
+    .InputForm {
+      grid-template-columns: 1fr 2fr 1fr 2fr;
+      grid-template-rows: repeat(10, 50px);
+      div {
+        font-size : 15px;
+      }
+    }
+  }
+  @media screen and (min-width : 1300px) {
+    .InputForm {
+      grid-template-columns: 1fr 2fr 1fr 2fr;
+      grid-template-rows: repeat(10, 45px);
+      div {
+        font-size : 15px;
+      }
+    }
+  }
+}
+
