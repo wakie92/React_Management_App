@@ -29,6 +29,7 @@ const Home: React.FC<LoginFormProps> = ({ form }) => {
     form.isFieldTouched('email') && form.getFieldError('email');
   const passwordError =
     form.isFieldTouched('password') && form.getFieldError('password');
+
   return (
     <div className={classes.Home_box}>
       <div className={classes.Home_outbox}>
