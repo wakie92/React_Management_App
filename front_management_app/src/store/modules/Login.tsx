@@ -1,13 +1,17 @@
-import { createActions, handleActions, Action } from 'redux-actions';
+import { handleActions, Action } from 'redux-actions';
+import { createStandardAction } from 'typesafe-actions';
 import { fromJS } from 'immutable';
 
 const ISLOGGED_IN = 'Login/ISLOGGEDIN';
-const LOGOUT = 'Login/LOGOUT';
+const LOG_OUT = 'Login/LOGOUT';
 
-type isLoggedInPayload = boolean;
-type LogOutPayload = string;
+export const isLoggedIn = createStandardAction(ISLOGGED_IN)<boolean>();
+export const logOut = createStandardAction(LOG_OUT)<string>();
 
-export interface LoginState {
+type isLoggedIn = ReturnType<typeof isLoggedIn>;
+type logOut = ReturnType<typeof logOut>;
+
+export type LoginState = {
   isLoggedIn: boolean;
   loginUser: {
     token: string | null;
@@ -15,11 +19,6 @@ export interface LoginState {
     error: string | null;
     loading: boolean;
   };
-}
-
-export const loginActions = {
-  isLoggedIn: createActions<isLoggedInPayload>(ISLOGGED_IN),
-  logout: createActions<LogOutPayload>(LOGOUT),
 };
 
 const initialState: LoginState = fromJS({
@@ -34,10 +33,10 @@ const initialState: LoginState = fromJS({
 
 export default handleActions<any>(
   {
-    [ISLOGGED_IN]: (state, action: Action<isLoggedInPayload>): LoginState => {
+    [ISLOGGED_IN]: (state, action: Action<isLoggedIn>): LoginState => {
       return state.set('isLoggedIn', true);
     },
-    [LOGOUT]: (state, action: Action<LogOutPayload>): LoginState => {
+    [LOG_OUT]: (state, action: Action<logOut>): LoginState => {
       return state
         .setIn(['loginUser', 'userEmail'], null)
         .setIn(['loginUser', 'token'], null)

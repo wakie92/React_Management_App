@@ -1,10 +1,10 @@
-import React from 'react';
-import Home from 'components/Home';
+import React, { Children } from 'react';
+import HomeContainer from 'containers/HomeContainer';
 
 const home: React.FC = () => {
   return (
     <>
-      <Home />
+      <HomeContainer />
     </>
   );
 };
