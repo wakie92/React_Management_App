@@ -5,13 +5,15 @@ import { FormComponentProps } from 'antd/lib/form';
 import 'antd/dist/antd.css';
 interface LoginFormProps extends FormComponentProps {
   email?: string;
+  logIn: any;
+  logOut: any;
 }
 
 // function hasErrors(fieldsError) {
 //   return Object.keys(fieldsError).some(field => fieldsError[field]);
 // }
 
-const Home: React.FC<LoginFormProps> = ({ form }) => {
+const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
   useEffect(() => {
     form.validateFields();
   }, []);
