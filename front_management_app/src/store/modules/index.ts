@@ -8,4 +8,4 @@ export interface StoreState {
 const rootReducer = combineReducers<StoreState>({
   board
 })
-export default rootReducer;
+export default rootReducer; 

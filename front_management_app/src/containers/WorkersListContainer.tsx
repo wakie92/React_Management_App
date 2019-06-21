@@ -1,17 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import WorkerList from 'components/WorkersList';
-
-interface WorkersListProps {
-  staffList: any;
+import {bindActionCreators} from 'redux'
+import { StoreState } from 'store/modules';
+import {
+  BoardContent, 
+  
+} from 'store/modules/board'
+import { connect } from 'react-redux';
+interface Iprops {
+  setBoardList: null | BoardContent[];
 }
-const WorkersListContainer: React.FC<WorkersListProps> = ({ staffList }) => {
-  const [staffs, setStaffs] = useState([]);
-  useEffect(() => {
-    console.log(staffList);
-    setStaffs(staffList);
-  }, [staffList]);
+interface IState {
 
-  console.log(staffs);
-  return <WorkerList staffList={staffs} />;
-};
-export default WorkersListContainer;
+}
+
+class WorkersListContainer extends Component<Iprops, IState> {
+  
+  render() {
+    console.log(this.props.setBoardList)
+    return (
+       <WorkerList/>;
+    );
+  }
+}
+
+export default connect(
+  ({board} :StoreState) => ({
+    setBoardList : board.get('setBoardList')
+}))(WorkersListContainer);

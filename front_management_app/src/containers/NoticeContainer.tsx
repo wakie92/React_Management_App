@@ -12,7 +12,7 @@ const NoticeContainer: React.FC<NoticeBoardProps> = ({
   matchData,
   NoticeData,
 }) => {
-  const boardList = useSelector((state : StoreState) => state.board)
+  const boardList = useSelector((state : StoreState) => state.board.get('test'))
   console.log(boardList);
   return <Notice NoticeData={NoticeData} matchData={matchData} />;
 };
