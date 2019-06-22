@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { BoardState, boardReducer as board } from './board';
+import board, { BoardState  } from './board';
 
 export interface StoreState {
   board: BoardState;

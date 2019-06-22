@@ -1,7 +1,6 @@
-// import { createActions, handleActions, Action } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import { createStandardAction } from 'typesafe-actions';
-import { fromJS } from 'immutable';
-
+import produce from 'immer';
 //action
 const SET_BOARD_LIST = 'board/SET_BOARD_LIST';
 const TEST = 'board/TEST';
@@ -13,22 +12,26 @@ export type BoardContent = {
   content: string;
 };
 
-
-//interface immutable 상속 받기.
+// interface immutable 상속 받기.
 export interface BoardState {
   setBoardList: null | BoardContent[]
   test : string,
-  get : any
 }
 
 //action 생성 함수
-export const setBoardList = createStandardAction(SET_BOARD_LIST)<
-  BoardContent
->();
-export const test = createStandardAction(TEST)<string>();
-type SetBoardList = ReturnType<typeof setBoardList>;
+export const boardActions = {
+  setBoardList: createStandardAction(SET_BOARD_LIST)<BoardContent>(),
+  test: createStandardAction(TEST)<string>(),
+};
+
+export type BoardStateType = {
+  setBoardList: null | BoardContent[];
+  test: string;
+};
+
+type SetBoardList = ReturnType<typeof boardActions.setBoardList>;
 //initialState
-const initialState: BoardState = fromJS({
+const initialState: BoardStateType = {
   setBoardList: [
     {
       id: 1,
@@ -36,19 +39,14 @@ const initialState: BoardState = fromJS({
       content: 'wepoweirpweorioewpr',
     },
   ],
-  test: "testing"
-});
+  test: 'testing',
+};
 
-//reducer
-export const boardReducer = (state = initialState, action : any ) => {
-  switch(action.type) {
-    case  SET_BOARD_LIST:
-    return {
-      ...state 
-    }
-    default :   
-    return state;
-  }
-}
+const boardReducer = handleActions<BoardStateType, any>(
+  {
+
+  },
+  initialState,
+);
 
 export default boardReducer;

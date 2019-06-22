@@ -19,12 +19,12 @@ class WorkersListContainer extends Component<Iprops, IState> {
   render() {
     console.log(this.props.setBoardList)
     return (
-       <WorkerList/>;
+       <WorkerList/>
     );
   }
 }
 
 export default connect(
   ({board} :StoreState) => ({
-    setBoardList : board.get('setBoardList')
+    setBoardList : board.setBoardList
 }))(WorkersListContainer);
