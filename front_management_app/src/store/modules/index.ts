@@ -1,11 +1,14 @@
 import { combineReducers } from 'redux';
-import board, { BoardState  } from './board';
+import board, { boardState  } from './board';
+import workers ,{ WorkerState } from './workers';
 
-export interface StoreState {
-  board: BoardState;
+export type StoreState = {
+  board: boardState;
+  workers: WorkerState;
 }
 
 const rootReducer = combineReducers<StoreState>({
-  board
+  board,
+  workers
 })
 export default rootReducer; 

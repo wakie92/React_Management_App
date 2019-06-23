@@ -1,37 +1,38 @@
 import { handleActions } from 'redux-actions';
 import { createStandardAction } from 'typesafe-actions';
 import produce from 'immer';
-//action
-const SET_BOARD_LIST = 'board/SET_BOARD_LIST';
-const TEST = 'board/TEST';
 
-//type
 export type BoardContent = {
   id: number;
   title: string;
   content: string;
 };
 
-// interface immutable 상속 받기.
-export interface BoardState {
-  setBoardList: null | BoardContent[]
-  test : string,
-}
+//action
+const INCREMENT = 'board/INCREMENT';
+const COUNT = 'board/COUNT';
+const SET_BOARD_LIST = 'board/SET_BOARD_LIST';
 
-//action 생성 함수
-export const boardActions = {
-  setBoardList: createStandardAction(SET_BOARD_LIST)<BoardContent>(),
-  test: createStandardAction(TEST)<string>(),
+//action constant
+export const boardListActions = {
+  increment: createStandardAction(INCREMENT)<void>(),
+  count: createStandardAction(COUNT)<number>(),
+  boardActions: {
+    setBoardList: createStandardAction(SET_BOARD_LIST)<BoardContent>(),
+  },
 };
 
-export type BoardStateType = {
+//typesetting
+type Increment = ReturnType<typeof boardListActions.increment>;
+type Count = ReturnType<typeof boardListActions.count>;
+
+export type boardState = {
+  count: number;
   setBoardList: null | BoardContent[];
-  test: string;
 };
 
-type SetBoardList = ReturnType<typeof boardActions.setBoardList>;
-//initialState
-const initialState: BoardStateType = {
+const initialState: boardState = {
+  count: 0,
   setBoardList: [
     {
       id: 1,
@@ -39,14 +40,17 @@ const initialState: BoardStateType = {
       content: 'wepoweirpweorioewpr',
     },
   ],
-  test: 'testing',
 };
 
-const boardReducer = handleActions<BoardStateType, any>(
+const board = handleActions<boardState, any>(
   {
-
+    [INCREMENT]: (state, action: Increment) => {
+      console.log(action.payload);
+      return produce(state, draft => {
+        draft.count = action.payload + 1;
+      });
+    },
   },
   initialState,
 );
-
-export default boardReducer;
+export default board;
