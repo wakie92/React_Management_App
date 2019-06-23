@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import WorkerList from 'components/WorkersList';
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux';
 import { StoreState } from 'store/modules';
-import {
-  BoardContent, 
-  
-} from 'store/modules/board'
 import { connect } from 'react-redux';
-interface Iprops {
-  setBoardList: null | BoardContent[];
-}
-interface IState {
+import { WorkerInfo, workersActions } from 'store/modules/workers';
 
+interface Iprops {
+  workersList: WorkerInfo[];
+  count: number;
+  WorkerActions : typeof workersActions;
 }
+interface IState {}
 
 class WorkersListContainer extends Component<Iprops, IState> {
-  
+  handleCount = () => {
+    const { WorkerActions,count } = this.props;
+    WorkerActions.increment(count)
+  } 
   render() {
-    console.log(this.props.setBoardList)
-    return (
-       <WorkerList/>
-    );
+    const { workersList, count } = this.props;
+    return <WorkerList staffList={workersList} count={count} handleCount = {this.handleCount} />;
   }
 }
 
 export default connect(
-  ({board} :StoreState) => ({
-    setBoardList : board.setBoardList
-}))(WorkersListContainer);
+  ({ workers, board }: StoreState) => ({
+    workersList: workers.WorkerList,
+    count: workers.count,
+  }),
+  dispatch => ({
+    WorkerActions: bindActionCreators(workersActions, dispatch),
+  }),
+)(WorkersListContainer);

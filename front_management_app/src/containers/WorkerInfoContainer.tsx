@@ -1,59 +1,87 @@
-import React, { ReactHTML, useState } from 'react';
+import React, { Component, useState } from 'react';
 import ListInfo from 'components/WorkersList/ListInfo';
+import { WorkerInfo, workersActions } from 'store/modules/workers';
+import { connect } from 'react-redux';
+import { StoreState } from 'store/modules';
+import { bindActionCreators } from 'redux';
 
-interface WorkerInfoProps {
-  staff: any;
+interface IProps {
+  staff: WorkerInfo;
   key: number;
+  WorkerActions: typeof workersActions;
+  selectedInfoType: string;
+  selectedInfo: boolean;
 }
 
-const WorkerInfoContainer: React.FC<WorkerInfoProps> = (
-  staff: any,
-  key: number,
-) => {
-  const [selectedInfoJsx, setSelectedInfoJsx] = useState();
-  const [selectedInfoType, setSelectedInfoType] = useState('');
-  const style: Object = {
+interface IState {
+  selectedInfoJSX: JSX.Element;
+}
+class WorkerInfoContainer extends Component<IProps, IState> {
+  style: Object = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: '550',
   };
-  const makeInfoBox: any = (info: string, infoType: string) => {
+  state = {
+    selectedInfoJSX: <div style={{ visibility: 'hidden' }} />,
+  };
+  makeInfoBox = (info: null | number | string, infoType: string) => {
+    let { selectedInfoType, WorkerActions } = this.props;
     let infoBox: JSX.Element = (
-      <div style={style}>
+      <div style={this.style}>
         {infoType} : {info}
       </div>
     );
     if (selectedInfoType === '' || selectedInfoType !== infoType) {
-      setSelectedInfoJsx(infoBox);
-      setSelectedInfoType(infoType);
+      WorkerActions.selectedInfoType(infoType);
+      WorkerActions.selectedInfo(true);
+      this.setState({ selectedInfoJSX: infoBox });
     } else if (selectedInfoType === infoType) {
-      setSelectedInfoJsx(null);
-      setSelectedInfoType('');
+      this.setState({
+        selectedInfoJSX: <div style={{ visibility: 'hidden' }} />,
+      });
+      WorkerActions.selectedInfo(false);
+      WorkerActions.selectedInfoType('');
     }
   };
-  const onShowInfoBox = (info: any, infoType: string) => {
+  onShowInfoBox = (info: null | number | string, infoType: string) => {
     switch (infoType) {
       case '사원번호':
       case '이메일':
       case '입사날짜':
-        return makeInfoBox(info, infoType);
+        return this.makeInfoBox(info, infoType);
       default:
         return null;
     }
   };
-  return (
-    <ListInfo
-      id={staff.id}
-      key={staff.id}
-      name={staff.name}
-      grade={staff.grade}
-      joinDate={staff.join_date}
-      email={staff.email}
-      clicked={onShowInfoBox}
-      selectedInfo={selectedInfoJsx}
-    />
-  );
-};
+  render() {
+    const { staff, selectedInfo } = this.props;
+    const { onShowInfoBox } = this;
+    const { selectedInfoJSX } = this.state;
+    console.log();
+    return (
+      <ListInfo
+        id={staff.id}
+        key={staff.id}
+        name={staff.name}
+        grade={staff.grade}
+        joinDate={staff.join_date}
+        email={staff.email}
+        clicked={onShowInfoBox}
+        selectedInfo={selectedInfo}
+        selectedInfoJSX={selectedInfoJSX}
+      />
+    );
+  }
+}
 
-export default WorkerInfoContainer;
+export default connect(
+  ({ workers }: StoreState) => ({
+    selectedInfoType: workers.selectedInfoType,
+    selectedInfo: workers.selectedInfo,
+  }),
+  dispatch => ({
+    WorkerActions: bindActionCreators(workersActions, dispatch),
+  }),
+)(WorkerInfoContainer);
