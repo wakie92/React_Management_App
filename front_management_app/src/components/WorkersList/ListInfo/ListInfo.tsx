@@ -8,11 +8,13 @@ interface ListInfoProps {
   key: number;
   name: string;
   grade: string;
-  joinDate: number;
+  joinDate: string;
   email: string;
-  clicked: (info: any, infoType: string) => any;
-  selectedInfo: any;
+  clicked: (info: null | number | string, infoType: string) => void | null;
+  selectedInfo: boolean;
+  selectedInfoJSX: JSX.Element;
 }
+
 const ListInfo: React.FC<ListInfoProps> = props => {
   const {
     id,
@@ -23,8 +25,8 @@ const ListInfo: React.FC<ListInfoProps> = props => {
     email,
     clicked,
     selectedInfo,
+    selectedInfoJSX,
   } = props;
-  // console.log(props);
   return (
     <>
       <div className={classes.Workerlist_bar}>
@@ -37,8 +39,8 @@ const ListInfo: React.FC<ListInfoProps> = props => {
           {name}
         </NavLink>
         <div className={classes.Content_grade}>{grade}</div>
-        {selectedInfo ? (
-          <div className={classes.Content_info}>{selectedInfo}</div>
+        {selectedInfo === true ? (
+          <div className={classes.Content_info}>{selectedInfoJSX}</div>
         ) : null}
         <div className={classes.Content_iconbox}>
           <div
