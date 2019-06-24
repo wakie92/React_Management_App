@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
-import { createStandardAction } from 'typesafe-actions';
+import { createStandardAction, createReducer, ActionType } from 'typesafe-actions';
 import produce from 'immer';
+import { updateKey } from '../utils';
 
 export type BoardContent = {
   id: number;
@@ -26,6 +27,7 @@ export const boardListActions = {
 type Increment = ReturnType<typeof boardListActions.increment>;
 type Count = ReturnType<typeof boardListActions.count>;
 
+type BoardActions = ActionType<typeof boardListActions>
 export type boardState = {
   count: number;
   setBoardList: null | BoardContent[];
@@ -42,15 +44,8 @@ const initialState: boardState = {
   ],
 };
 
-const board = handleActions<boardState, any>(
-  {
-    [INCREMENT]: (state, action: Increment) => {
-      console.log(action.payload);
-      return produce(state, draft => {
-        draft.count = action.payload + 1;
-      });
-    },
-  },
-  initialState,
-);
+const board = createReducer<boardState, BoardActions>(initialState)
+.handleAction(boardListActions.increment, (state,action:Increment) => 
+  updateKey(state, 'count', action.payload)
+)
 export default board;
