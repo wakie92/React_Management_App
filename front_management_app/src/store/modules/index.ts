@@ -6,6 +6,6 @@ export interface StoreState {
 }
 
 const rootReducer = combineReducers<StoreState>({
-  board
-})
+  board,
+});
 export default rootReducer;
