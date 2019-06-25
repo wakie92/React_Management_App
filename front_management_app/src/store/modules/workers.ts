@@ -1,5 +1,5 @@
-import { createStandardAction } from 'typesafe-actions';
-import { handleActions } from 'redux-actions';
+// import { createStandardAction, ActionType, } from 'typesafe-actions';
+import { handleActions, createAction } from 'redux-actions';
 import { produce } from 'immer';
 import { ReactElement } from 'react';
 
@@ -7,7 +7,8 @@ const WORKERS_LIST = 'workers/WORKERS_LIST';
 const COUNT = 'workers/COUNT';
 const INCREMENT = 'workers/INCREMENT';
 const SELECTED_INFO_TYPE = 'workers/SELECTED_INFO_TYPE';
-const SELECTED_INFO = 'workers/SELECTED_INFO'
+const SELECTED_INFO = 'workers/SELECTED_INFO';
+
 export type WorkerInfo = {
   id: number;
   name: string;
@@ -27,21 +28,23 @@ export type WorkerInfo = {
   total_year_vacation: number;
 };
 export const workersActions = {
-  workersList: createStandardAction(WORKERS_LIST)<WorkerInfo>(),
-  count: createStandardAction(COUNT)<number>(),
-  increment: createStandardAction(INCREMENT)<void>(),
-  selectedInfoType : createStandardAction(SELECTED_INFO_TYPE)<string>(),
-  selectedInfo : createStandardAction(SELECTED_INFO)<boolean>()
+  workersList: createAction<WorkerInfo[]>(WORKERS_LIST),
+  count: createAction<number>(COUNT),
+  increment: createAction<number>(INCREMENT),
+  selectedInfoType: createAction<string>(SELECTED_INFO_TYPE),
+  selectedInfo: createAction<boolean>(SELECTED_INFO),
 };
 
 type Increment = ReturnType<typeof workersActions.increment>;
-type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>
-type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>
+type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
+type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
+// type Actions = Increment | SelectedInfoType | SelectedInfo;
+
 export type WorkerState = {
   WorkerList: WorkerInfo[];
   count: number;
-  selectedInfoType:string;
-  selectedInfo:boolean;
+  selectedInfoType: string;
+  selectedInfo: boolean;
 };
 
 const initialState: WorkerState = {
@@ -156,28 +159,28 @@ const initialState: WorkerState = {
     },
   ],
   count: 0,
-  selectedInfoType : '',
-  selectedInfo : false
+  selectedInfoType: '',
+  selectedInfo: false,
 };
 
 const workers = handleActions<WorkerState, any>(
   {
-    [INCREMENT]: (state, action: Increment) => {
+    [INCREMENT]: (state, action:Increment) => {
       return produce(state, draft => {
         draft.count = action.payload + 1;
       });
     },
-    [SELECTED_INFO_TYPE] : (state, action:SelectedInfoType)=> {
+    [SELECTED_INFO_TYPE]: (state, action: SelectedInfoType) => {
       return produce(state, draft => {
-        console.log(action.payload)
+        console.log(action.payload);
         draft.selectedInfoType = action.payload;
-      })
+      });
     },
-    [SELECTED_INFO] : (state,action :SelectedInfo ) => {
+    [SELECTED_INFO]: (state, action: SelectedInfo) => {
       return produce(state, draft => {
-        draft.selectedInfo = action.payload
-      })
-    }
+        draft.selectedInfo = action.payload;
+      });
+    },
   },
   initialState,
 );
