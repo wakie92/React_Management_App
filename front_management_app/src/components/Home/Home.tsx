@@ -9,10 +9,6 @@ interface LoginFormProps extends FormComponentProps {
   logOut: any;
 }
 
-// function hasErrors(fieldsError) {
-//   return Object.keys(fieldsError).some(field => fieldsError[field]);
-// }
-
 const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
   useEffect(() => {
     form.validateFields();
@@ -31,6 +27,8 @@ const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
     form.isFieldTouched('email') && form.getFieldError('email');
   const passwordError =
     form.isFieldTouched('password') && form.getFieldError('password');
+
+  console.log(logIn);
 
   return (
     <div className={classes.Home_box}>
@@ -97,11 +95,7 @@ const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
                 )}
               </Form.Item>
               <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  // disabled={hasErrors(form.getFieldsError())}
-                >
+                <Button type="primary" htmlType="submit" onClick={logIn}>
                   Log in
                 </Button>
               </Form.Item>

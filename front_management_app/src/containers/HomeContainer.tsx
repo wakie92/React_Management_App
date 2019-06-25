@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Home from '../components/Home';
-import { isLoggedIn, logOut, LoginState } from '../store/modules/Login';
+import Home from 'components/Home';
+import { isLoggedIn, logOut, LoginState } from 'store/modules/Login';
 
 const HomeContainer = () => {
   const login = useSelector((state: LoginState) => state.isLoggedIn);
