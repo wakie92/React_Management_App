@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { StoreState } from 'store/modules';
 import { connect } from 'react-redux';
 import { WorkerInfo, workersActions } from 'store/modules/workers';
-import { boardListActions } from 'store/modules/board';
 
 interface Iprops {
   workersList: WorkerInfo[];
@@ -19,8 +18,12 @@ class WorkersListContainer extends Component<Iprops, IState> {
     const { WorkerActions, count } = this.props;
     WorkerActions.increment(count);
   };
+  componentDidMount() {
+    this.props.WorkerActions.getWorkersList()
+  }
   render() {
     const { workersList, count } = this.props;
+    console.log(workersList)
     return (
       <WorkerList
         staffList={workersList}
@@ -38,6 +41,5 @@ export default connect(
   }),
   dispatch => ({
     WorkerActions: bindActionCreators(workersActions, dispatch),
-    // BoardActions : bindActionCreators(boardListActions,dispatch)
   }),
 )(WorkersListContainer);
