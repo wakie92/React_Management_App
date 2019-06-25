@@ -17,8 +17,8 @@
     align-items: center;
     height: 100%;
     nav , button {
-      font-weight: 550;
       height: 100%;
+      font-weight: 550;
       background-color: rgb(221, 221, 221);
     }
     nav {
@@ -28,6 +28,7 @@
       justify-content: center;
       a {
         font-weight: 550;
+        font-size : 15px;
       }
     }
     @media screen and (min-width : 480px) {

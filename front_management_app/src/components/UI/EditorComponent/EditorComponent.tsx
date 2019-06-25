@@ -34,21 +34,23 @@ const EditorComponent: React.FC = () => {
   
   return (
     <>
-      <div className={classes.TextAreaWrpper} ref = {widthTest}>
-        <TextArea
-          placeholder="제목을 입력해주세요"
-          autosize
-          onChange={onChangeTitle}
-          autoFocus = {true}
-        />
-        <TextArea
-          onChange={onChangeContent}
-          placeholder="Autosize height with minimum and maximum number of lines"
-          autosize={{ minRows: 10, maxRows: 10 }}
-        />
+      <div className = {classes.EditorWrapper}>
+        <div className={classes.TextAreaWrapper} ref = {widthTest}>
+          <TextArea
+            placeholder="제목을 입력해주세요"
+            autosize
+            onChange={onChangeTitle}
+            autoFocus = {true}
+          />
+          <TextArea
+            onChange={onChangeContent}
+            placeholder="Autosize height with minimum and maximum number of lines"
+            autosize={{ minRows: 10, maxRows: 10 }}
+          />
+        </div>
+        <UploadCompoent />
+        <Button type="primary">게시</Button>
       </div>
-      <UploadCompoent />
-      <Button type="primary">게시</Button>
     </>
   );
 };

@@ -1,7 +1,10 @@
 @import 'styles/utils.scss';
 
-.TextAreaWrpper{
-  textarea {
-    margin : 10px 0 ;
+.EditorWrapper{
+  padding :  10px 0;
+  .TextAreaWrapper{
+    textarea {
+      margin : 10px 0 ;
+    }
   }
 }

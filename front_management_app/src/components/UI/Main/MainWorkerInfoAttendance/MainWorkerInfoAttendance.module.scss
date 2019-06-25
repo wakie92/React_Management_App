@@ -2,6 +2,7 @@
 
 .InputWrapper {
   @include infoWrapper();
+  height: unset;
   .WrapperHeader {
     @include infoHeader();
   }
