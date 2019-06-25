@@ -1,5 +1,5 @@
-import { createStandardAction } from 'typesafe-actions';
-import { handleActions } from 'redux-actions';
+// import { createStandardAction, ActionType, } from 'typesafe-actions';
+import { handleActions, createAction } from 'redux-actions';
 import { produce } from 'immer';
 import { ReactElement } from 'react';
 
@@ -29,16 +29,18 @@ export type WorkerInfo = {
 };
 
 export const workersActions = {
-  workersList: createStandardAction(WORKERS_LIST)<WorkerInfo>(),
-  count: createStandardAction(COUNT)<number>(),
-  increment: createStandardAction(INCREMENT)<void>(),
-  selectedInfoType: createStandardAction(SELECTED_INFO_TYPE)<string>(),
-  selectedInfo: createStandardAction(SELECTED_INFO)<boolean>(),
+  workersList: createAction<WorkerInfo[]>(WORKERS_LIST),
+  count: createAction<number>(COUNT),
+  increment: createAction<number>(INCREMENT),
+  selectedInfoType: createAction<string>(SELECTED_INFO_TYPE),
+  selectedInfo: createAction<boolean>(SELECTED_INFO),
 };
 
 type Increment = ReturnType<typeof workersActions.increment>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
+// type Actions = Increment | SelectedInfoType | SelectedInfo;
+
 export type WorkerState = {
   WorkerList: WorkerInfo[];
   count: number;
@@ -164,7 +166,7 @@ const initialState: WorkerState = {
 
 const workers = handleActions<WorkerState, any>(
   {
-    [INCREMENT]: (state, action: Increment) => {
+    [INCREMENT]: (state, action:Increment) => {
       return produce(state, draft => {
         draft.count = action.payload + 1;
       });
