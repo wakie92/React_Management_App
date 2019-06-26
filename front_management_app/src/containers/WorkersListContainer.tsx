@@ -18,6 +18,7 @@ class WorkersListContainer extends Component<Iprops, IState> {
   handleCount = () => {
     const { WorkerActions, count } = this.props;
     WorkerActions.increment(count);
+    
   };
   render() {
     const { workersList, count } = this.props;

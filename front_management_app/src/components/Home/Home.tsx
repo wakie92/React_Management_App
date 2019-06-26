@@ -3,22 +3,23 @@ import classes from './Home.module.scss';
 import { Form, Icon, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import 'antd/dist/antd.css';
+import Password from 'antd/lib/input/Password';
 interface LoginFormProps extends FormComponentProps {
   email?: string;
   logIn: any;
-  logOut: any;
 }
 
-const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
+const Home: React.FC<LoginFormProps> = ({ form, logIn }) => {
   useEffect(() => {
     form.validateFields();
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    form.validateFields((err, values) => {
+    form.validateFields((err, { email, password }) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log('Email: ', email, 'Password: ', password);
+        logIn(email, password);
       }
     });
   };
@@ -27,8 +28,6 @@ const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
     form.isFieldTouched('email') && form.getFieldError('email');
   const passwordError =
     form.isFieldTouched('password') && form.getFieldError('password');
-
-  console.log(logIn);
 
   return (
     <div className={classes.Home_box}>
@@ -47,11 +46,11 @@ const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
                   rules: [
                     {
                       type: 'email',
-                      message: 'fuck',
+                      message: '이메일 형식이 맞지 않습니다',
                     },
                     {
                       required: true,
-                      message: 'Please input your email!',
+                      message: '비밀번호를 확인해주세요',
                     },
                   ],
                 })(
@@ -95,7 +94,11 @@ const Home: React.FC<LoginFormProps> = ({ form, logIn, logOut }) => {
                 )}
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit" onClick={logIn}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onSubmit={handleSubmit}
+                >
                   Log in
                 </Button>
               </Form.Item>

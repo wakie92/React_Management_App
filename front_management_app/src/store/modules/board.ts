@@ -45,7 +45,7 @@ const initialState: boardState = {
 };
 
 const board = createReducer<boardState, BoardActions>(initialState)
-.handleAction(boardListActions.increment, (state,action:Increment) => 
-  updateKey(state, 'count', action.payload)
-)
+// .handleAction(boardListActions.increment, (state,action:Increment) => 
+//   updateKey(state, 'count', action.payload)
+// )
 export default board;

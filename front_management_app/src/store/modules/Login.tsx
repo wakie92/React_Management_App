@@ -1,4 +1,4 @@
-import { handleActions, Action, createAction } from 'redux-actions';
+import { handleActions, createAction } from 'redux-actions';
 import { produce } from 'immer';
 
 const ISLOGGED_IN = 'Login/ISLOGGEDIN';
@@ -39,9 +39,9 @@ export default handleActions<LoginState, any>(
     },
     [LOG_OUT]: (state, action: logOut) => {
       return produce(state, draft => {
-        (draft.loginUser.userEmail = null),
-          (draft.loginUser.token = null),
-          (draft.isLoggedIn = false);
+        draft.loginUser.userEmail = null;
+          draft.loginUser.token = null;
+          draft.isLoggedIn = false;
       });
     },
   },

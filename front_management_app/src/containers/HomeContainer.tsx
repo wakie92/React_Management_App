@@ -16,7 +16,7 @@ const HomeContainer = () => {
 
   const LogOut = useCallback(() => dispatch({ type: logOut }), [dispatch]);
 
-  return <Home logIn={LogIn} logOut={LogOut} />;
+  return <Home logIn={LogIn} />;
 };
 
 export default HomeContainer;
