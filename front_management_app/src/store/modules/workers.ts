@@ -1,10 +1,9 @@
 // import { createStandardAction, ActionType, } from 'typesafe-actions';
 import { handleActions, createAction } from 'redux-actions';
 import { produce } from 'immer';
-import { ReactElement } from 'react';
-import * as api from 'libs/api'
-import { AxiosResponse } from 'axios';
+import * as api from 'libs/api';
 
+const GET_WORKERS_LIST = 'workers/GET_WORKERS_LIST';
 const WORKERS_LIST = 'workers/WORKERS_LIST';
 const COUNT = 'workers/COUNT';
 const INCREMENT = 'workers/INCREMENT';
@@ -16,7 +15,6 @@ export type WorkerInfo = {
   name: string;
   email: string;
   user_type: string;
-  password: string;
   address: string;
   salary: number;
   profile_image: null;
@@ -30,27 +28,30 @@ export type WorkerInfo = {
   total_year_vacation: number;
 };
 export const workersActions = {
-  getWorkersList: createAction<WorkerInfo[]>(WORKERS_LIST, api.getWorkers),
+  // 밑에 방법은 왜안되는지 무슨차이인지 알아내기
+  // getWorkersList: createAction<Promise<void>>(GET_WORKERS_LIST,api.getWorkers),
+  getWorkersList: createAction<WorkerInfo[]>(GET_WORKERS_LIST),
   count: createAction<number>(COUNT),
   increment: createAction<number>(INCREMENT),
-  selectedInfoType: createAction<string>(SELECTED_INFO_TYPE),
+  selectedInfoType: createAction<string, string>(
+    SELECTED_INFO_TYPE,
+    selectedInfoType => selectedInfoType,
+  ),
   selectedInfo: createAction<boolean>(SELECTED_INFO),
 };
-
 type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
-// type Actions = Increment | SelectedInfoType | SelectedInfo;
 
 export type WorkerState = {
-  WorkerList: WorkerInfo[];
+  workerList: null | WorkerInfo[];
   count: number;
   selectedInfoType: string;
   selectedInfo: boolean;
 };
 
 const initialState: WorkerState = {
-  WorkerList: [],
+  workerList: null,
   count: 0,
   selectedInfoType: '',
   selectedInfo: false,
@@ -58,15 +59,14 @@ const initialState: WorkerState = {
 
 const workers = handleActions<WorkerState, any>(
   {
-    [WORKERS_LIST]: (state, action:GetWorkersList) => {
+    [GET_WORKERS_LIST]: (state, action: GetWorkersList) => {
       return produce(state, draft => {
-        console.log(action)
-        draft.WorkerList = action.payload;
+        console.log(action.payload);
+        draft.workerList = action.payload;
       });
     },
     [SELECTED_INFO_TYPE]: (state, action: SelectedInfoType) => {
       return produce(state, draft => {
-        console.log(action.payload);
         draft.selectedInfoType = action.payload;
       });
     },

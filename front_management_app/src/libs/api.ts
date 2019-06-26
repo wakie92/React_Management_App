@@ -1,10 +1,3 @@
 import api from 'axios-base';
 import { WorkerInfo } from 'store/modules/workers';
-export const getWorkers = () => {
-  let users:WorkerInfo[] = [];
-  api.get(`/users`).then(res => {
-    users = res.data;
-    console.log(users)
-  });
-  return users;
-};
+export const getWorkers = api.get(`/users`).then((res) => {res.data.map((data:WorkerInfo) => {return data}) }).catch(e =>  console.log(e));

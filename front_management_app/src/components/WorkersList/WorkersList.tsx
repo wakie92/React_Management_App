@@ -4,7 +4,7 @@ import ListInfoContainer from 'containers/WorkerInfoContainer';
 import { WorkerInfo } from 'store/modules/workers';
 
 interface WorkerListProps {
-  staffList: WorkerInfo[];
+  staffList: null | WorkerInfo[];
   count: number;
   handleCount: () => void;
 }
@@ -26,7 +26,11 @@ const WorkersList: React.FC<WorkerListProps> = ({
           <div className={classes.Category_date}>입사일자</div>
         </div>
         <ul>
-          {staffList.map(staff => {
+          {
+            staffList === null ? 
+            <div className = {classes.EmptyBox}></div>
+            :
+            staffList.map(staff => {
             return <ListInfoContainer staff = {staff} key={staff.id} />;
           })}
         </ul>
