@@ -22,13 +22,11 @@ class WorkersListContainer extends Component<Iprops, IState> {
     const {WorkerActions, workersList } = this.props;
     workersList === null  &&
     axios.get('/users/').then(res => {
-      console.log(res.data)
       return WorkerActions.getWorkersList(res.data)
     })
   }
   render() {
     const { workersList, count } = this.props;
-    console.log(workersList)
     return (
       <WorkerList
         staffList={workersList}

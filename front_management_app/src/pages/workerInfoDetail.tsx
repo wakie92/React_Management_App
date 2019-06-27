@@ -9,7 +9,8 @@ import { WorkerState } from 'store/modules/workers';
 
 const workerInfoDetail: React.FC = ({ match }: any) => {
   let infoType: string = match.url.substr(12, 10);
-  
+  const id:number = parseInt(match.params.id)
+  console.log(typeof id)
   return (
     <>
       <Layout pageType="Detail">
@@ -17,7 +18,7 @@ const workerInfoDetail: React.FC = ({ match }: any) => {
         {infoType === 'attendance' ? (
           <WorkerInfoAttendanceContainer matchData={match} workers={workers} />
         ) : (
-          <WorkerInfoDetailContainer matchData={match} />
+          <WorkerInfoDetailContainer id={id} />
         )}
       </Layout>
     </>

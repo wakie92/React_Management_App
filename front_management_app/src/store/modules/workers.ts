@@ -4,7 +4,8 @@ import { produce } from 'immer';
 import * as api from 'libs/api';
 
 const GET_WORKERS_LIST = 'workers/GET_WORKERS_LIST';
-const WORKERS_LIST = 'workers/WORKERS_LIST';
+const LOAD_WORKER = 'workers/LOAD_WORKER';
+const UNLOAD_WORKER = 'workers/UNLOAD_WORKER';
 const COUNT = 'workers/COUNT';
 const INCREMENT = 'workers/INCREMENT';
 const SELECTED_INFO_TYPE = 'workers/SELECTED_INFO_TYPE';
@@ -38,16 +39,18 @@ export const workersActions = {
     selectedInfoType => selectedInfoType,
   ),
   selectedInfo: createAction<boolean>(SELECTED_INFO),
+  loadWorker : createAction(LOAD_WORKER)
 };
 type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
-
+type LoadWorker = ReturnType<typeof workersActions.loadWorker>;
 export type WorkerState = {
   workerList: null | WorkerInfo[];
   count: number;
   selectedInfoType: string;
   selectedInfo: boolean;
+  worker : null | WorkerInfo
 };
 
 const initialState: WorkerState = {
@@ -55,13 +58,13 @@ const initialState: WorkerState = {
   count: 0,
   selectedInfoType: '',
   selectedInfo: false,
+  worker : null
 };
 
 const workers = handleActions<WorkerState, any>(
   {
     [GET_WORKERS_LIST]: (state, action: GetWorkersList) => {
       return produce(state, draft => {
-        console.log(action.payload);
         draft.workerList = action.payload;
       });
     },
@@ -75,6 +78,12 @@ const workers = handleActions<WorkerState, any>(
         draft.selectedInfo = action.payload;
       });
     },
+    [LOAD_WORKER] : (state,action : LoadWorker) => {
+      return produce(state, draft => {
+        const data = action.payload;
+        console.log(data);
+      })
+    }
   },
   initialState,
 );

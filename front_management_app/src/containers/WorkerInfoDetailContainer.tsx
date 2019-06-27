@@ -1,25 +1,37 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { Component, useEffect } from 'react';
 import WorkerInFoDetail from 'components/WorkerInfoDetail';
-import { useSelector, useDispatch } from 'react-redux';
-import { WorkerState, WorkerInfo,workersActions } from 'store/modules/workers';
+import { WorkerState, WorkerInfo, workersActions } from 'store/modules/workers';
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { StoreState } from 'store/modules';
+import axios from 'axios-base';
+import { getWorkerInfo } from 'libs/api';
 
-interface DetailContainerProps {
-  matchData: any;
+
+interface IProps {
+  id: number;
+  workersList : null | WorkerInfo[];
+  WorkerActions: typeof workersActions;
 }
-const WorkerInfoDetailContainer: React.FC<DetailContainerProps> = ({
-  matchData,
-}) => {
-  const [staff, setStaff] = useState();
-  let staffId = Number.parseInt(matchData.params.id);
-  const { workerList } = useSelector((state: WorkerState) => state);
-  const dispatch = useDispatch();
-  // const Data = useCallback(() => dispatch({type : get}) ,[dispatch])
-  // console.log(Data());
-  // const { workerList } = useSelector((state: WorkerState) => state);
-  console.log(workerList);
-  useEffect(() => {
-    // dispatch(workersActions.getWorkersList)
-  }, []);
-  return <WorkerInFoDetail idNumber={matchData.params.id} staffInfo={staff} />;
-};
-export default WorkerInfoDetailContainer;
+interface IState {}
+class WorkerInfoDetailContainer extends Component<IProps, IState> {
+  componentDidMount() {
+    const { id, WorkerActions}  = this.props
+    getWorkerInfo(id).then(list => WorkerActions.loadWorker(list));
+    // axios.get(`/users/${id}`).then((res) =>  {return WorkerActions.loadWorker(res.data)})
+  }
+  render() {
+    console.log(this.props)
+    return <div />;
+  }
+}
+
+export default connect(
+  ({workers} : StoreState) =>({
+    workersList : workers.workerList
+  }),
+  (dispatch) => ({
+    WorkerActions : bindActionCreators(workersActions,dispatch)})
+  )(WorkerInfoDetailContainer);
+
+// return <WorkerInFoDetail idNumber={matchData.params.id} staffInfo={staff} />;
