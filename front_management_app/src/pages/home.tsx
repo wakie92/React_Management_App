@@ -1,5 +1,5 @@
-import React, { Children } from 'react';
-import HomeContainer from 'containers/HomeContainer';
+import React from 'react';
+import HomeContainer from 'containers/LogInContainer';
 
 const home: React.FC = () => {
   return (
