@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux';
 import { StoreState } from 'store/modules';
 import { connect } from 'react-redux';
 import { WorkerInfo, workersActions } from 'store/modules/workers';
-import { boardListActions } from 'store/modules/board';
-
+import axios from 'axios-base';
 interface Iprops {
-  workersList: WorkerInfo[];
+  workersList: null | WorkerInfo[];
   count: number;
   WorkerActions: typeof workersActions;
   // BoardActions : typeof boardListActions;
@@ -20,6 +19,13 @@ class WorkersListContainer extends Component<Iprops, IState> {
     WorkerActions.increment(count);
     
   };
+  componentDidMount() {
+    const {WorkerActions, workersList } = this.props;
+    workersList === null  &&
+    axios.get('/users/').then(res => {
+      return WorkerActions.getWorkersList(res.data)
+    })
+  }
   render() {
     const { workersList, count } = this.props;
     return (
@@ -34,11 +40,10 @@ class WorkersListContainer extends Component<Iprops, IState> {
 
 export default connect(
   ({ workers, board }: StoreState) => ({
-    workersList: workers.WorkerList,
+    workersList: workers.workerList,
     count: workers.count,
   }),
   dispatch => ({
     WorkerActions: bindActionCreators(workersActions, dispatch),
-    // BoardActions : bindActionCreators(boardListActions,dispatch)
   }),
 )(WorkersListContainer);

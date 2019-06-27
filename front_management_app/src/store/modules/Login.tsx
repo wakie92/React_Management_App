@@ -86,6 +86,7 @@ export default (
   });
 };
 
+<<<<<<< HEAD
 // export default handleActions<LoginState, any>(
 //   {
 //     [ISLOGGED_IN]: (state, action: isLoggedIn) => {
@@ -102,3 +103,22 @@ export default (
 //   },
 //   initialState,
 // );
+=======
+export default handleActions<LoginState, any>(
+  {
+    [ISLOGGED_IN]: (state, action: isLoggedIn) => {
+      return produce(state, draft => {
+        draft.isLoggedIn = action.payload;
+      });
+    },
+    [LOG_OUT]: (state, action: logOut) => {
+      return produce(state, draft => {
+        draft.loginUser.userEmail = null;
+        draft.loginUser.token = null;
+        draft.isLoggedIn = false;
+      });
+    },
+  },
+  initialState,
+);
+>>>>>>> 7968ebb6da0db8522b0be3b92969658a38a5e2dd

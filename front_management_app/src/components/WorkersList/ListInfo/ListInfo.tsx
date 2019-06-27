@@ -29,12 +29,13 @@ const ListInfo: React.FC<ListInfoProps> = props => {
   } = props;
   return (
     <>
-      <div className={classes.Workerlist_bar}>
+      <div className={classes.Workerlist_bar} key = {key}>
         <div className={classes.Content_photo} />
         <NavLink
           exact
           to={`/workerinfo/detail/${id}`}
           className={classes.Content_name}
+          
         >
           {name}
         </NavLink>

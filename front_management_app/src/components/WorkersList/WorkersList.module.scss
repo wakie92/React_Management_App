@@ -8,12 +8,22 @@
   .Category_bar {
     display: none;  
   }  
+  ul {
+    .EmptyBox {
+      height: 40vh;
+    }
+  }
 }
 
 @media (min-width: 768px) {
   .Workerlist_layout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    ul {
+      .EmptyBox {
+        height: 55vh;
+      }
+    }
   }
 }
 
