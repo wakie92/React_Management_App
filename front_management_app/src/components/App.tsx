@@ -8,6 +8,7 @@ import {
   Notice,
   Editor,
   ErrorPage,
+  Register
 } from 'pages';
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
           <Route exact path="/notice" component={Notice} />
           <Route exact path="/notice/post" component={Editor} />
           <Route exact path="/notice/:id" component={Notice} />
-          <Route exact path="/register" component={WorkerRegister} />
+          <Route exact path="/register" component={Register} />
           <Route component={ErrorPage} />
         </Switch>
       </>

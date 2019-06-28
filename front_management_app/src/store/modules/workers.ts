@@ -47,6 +47,7 @@ type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
 type LoadWorker = ReturnType<typeof workersActions.loadWorker>;
 type UnLoadWorker = ReturnType<typeof workersActions.unLoadWorker>;
+
 export type WorkerState = {
   workerList: null | WorkerInfo[];
   count: number;
