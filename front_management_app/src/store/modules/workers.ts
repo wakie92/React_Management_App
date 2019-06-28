@@ -1,5 +1,5 @@
 // import { createStandardAction, ActionType, } from 'typesafe-actions';
-import { handleActions, createAction } from 'redux-actions';
+import { handleActions, createAction, createActions } from 'redux-actions';
 import { produce } from 'immer';
 import * as api from 'libs/api';
 
@@ -39,12 +39,14 @@ export const workersActions = {
     selectedInfoType => selectedInfoType,
   ),
   selectedInfo: createAction<boolean>(SELECTED_INFO),
-  loadWorker : createAction(LOAD_WORKER)
+  loadWorker : createAction<WorkerInfo>(LOAD_WORKER),
+  unLoadWorker : createAction(UNLOAD_WORKER)
 };
 type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
 type LoadWorker = ReturnType<typeof workersActions.loadWorker>;
+type UnLoadWorker = ReturnType<typeof workersActions.unLoadWorker>;
 export type WorkerState = {
   workerList: null | WorkerInfo[];
   count: number;
@@ -81,7 +83,12 @@ const workers = handleActions<WorkerState, any>(
     [LOAD_WORKER] : (state,action : LoadWorker) => {
       return produce(state, draft => {
         const data = action.payload;
-        console.log(data);
+        draft.worker = data
+      })
+    },
+    [UNLOAD_WORKER] : (state, action : UnLoadWorker) => {
+      return produce(state, draft => {
+        draft.worker = null;
       })
     }
   },

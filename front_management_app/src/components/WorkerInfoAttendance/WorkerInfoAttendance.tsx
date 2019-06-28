@@ -1,9 +1,10 @@
 import React from 'react';
 import MainWorkerInfoAttendance from 'components/UI/Main/MainWorkerInfoAttendance';
 import MainContentsSubHeader from 'components/UI/Main/MainContentsSubHeader';
+import { WorkerInfo } from 'store/modules/workers';
 interface AttendanceContainerProps {
   idNumber: any;
-  staffInfo: any;
+  staffInfo: null | WorkerInfo;
 }
 const WorkerInfoAttendance: React.FC<AttendanceContainerProps> = ({
   idNumber,
@@ -12,7 +13,7 @@ const WorkerInfoAttendance: React.FC<AttendanceContainerProps> = ({
   return (
     <>
       <MainContentsSubHeader id={idNumber} />
-      {staffInfo === undefined ? (
+      {staffInfo === null ? (
         <MainWorkerInfoAttendance />
       ) : (
         <MainWorkerInfoAttendance

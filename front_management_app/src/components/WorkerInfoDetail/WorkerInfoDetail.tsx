@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import MainWorkerDetailInfo from 'components/UI/Main/MainWorkerDetailInfo';
 import MainContentsSubHeader from 'components/UI/Main/MainContentsSubHeader';
+import { WorkerInfo } from 'store/modules/workers';
 
 interface DetailInfoProps {
-  staffInfo: any;
-  idNumber: string;
+  staffInfo: null | WorkerInfo;
+  idNumber: number;
 }
 
 const WorkerInfoDetail: React.FC<DetailInfoProps> = ({
   staffInfo,
   idNumber,
 }) => {
-  console.log(staffInfo);
   return (
     <>
       <MainContentsSubHeader id={idNumber} />
-      {staffInfo === undefined ? (
+      {staffInfo === null ? (
         <MainWorkerDetailInfo />
       ) : (
         <MainWorkerDetailInfo
