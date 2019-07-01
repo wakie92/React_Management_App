@@ -1,57 +1,78 @@
 import React from 'react';
 import classes from './RegisterForm.module.scss';
-import { RegisterState } from 'store/modules/workerRegister';
+import Button from '../UI/Button';
 
 interface FormProps {
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  data: RegisterState;
+  data: any;
+  errorMsg : JSX.Element
 }
-const RegisterForm: React.FC<FormProps> = ({ onChange, onSubmit, data }) => {
+const RegisterForm: React.FC<FormProps> = ({ onChange, onSubmit, data ,errorMsg}) => {
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        name="workerName"
-        placeholder="name"
-        value={data.workerName}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="email"
-        placeholder="email"
-        onChange={onChange}
-        value={data.email}
-      />
-      <input
-        type="text"
-        name="salary"
-        placeholder="salary"
-        onChange={onChange}
-        value={data.salary}
-      />
-      <input
-        type="text"
-        name="birth"
-        placeholder="birth"
-        onChange={onChange}
-        value={data.birth}
-      />
-      <input
-        type="text"
-        name="join_date"
-        placeholder="join_date"
-        onChange={onChange}
-        value={data.join_date}
-      />
-      <input
-        type="text"
-        name="grade"
-        placeholder="grade"
-        onChange={onChange}
-        value={data.grade}
-      />
+    <form className={classes.formContainer} onSubmit={onSubmit}>
+      <div>
+        <input
+          type="text"
+          name="workerName"
+          placeholder="NAME"
+          value={data.workerName}
+          onChange={onChange}
+        />
+        {errorMsg}
+      </div>
+      <div>
+        <input
+          type="text"
+          name="email"
+          placeholder="EMAIL"
+          onChange={onChange}
+          value={data.email}
+        />
+        <p>에러메세지</p>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="salary"
+          placeholder="SALARY"
+          onChange={onChange}
+          value={data.salary}
+        />
+        <p>에러메세지</p>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="birth"
+          placeholder="BIRTH"
+          onChange={onChange}
+          value={data.birth}
+        />
+
+        <p>에러메세지</p>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="join_date"
+          placeholder="JOIN_DATE"
+          onChange={onChange}
+          value={data.join_date}
+        />
+        <p>에러메세지</p>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="grade"
+          placeholder="GRADE"
+          onChange={onChange}
+          value={data.grade}
+        />
+        <p>에러메세지</p>
+      </div>
+      <Button btnType="register" btnValue="가입" />
     </form>
   );
 };

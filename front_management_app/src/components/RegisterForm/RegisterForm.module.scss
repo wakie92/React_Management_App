@@ -1,0 +1,19 @@
+@import 'styles/utils.scss';
+
+
+form {
+  height: 90%;
+  display : flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding : 10px;
+  border: 1px solid #ccc;
+  border-radius:  10px;
+  input {
+    font-size: 15px;
+  }
+  p {
+    font-size : 3px;
+    display: none;
+  }
+}
