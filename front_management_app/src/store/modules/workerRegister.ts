@@ -10,47 +10,55 @@ export interface RegisterFormType {
   grade: string;
   errorMessage: string;
 }
-export type ErrorType = {
-  emailErr: string;
-  workerNameErr: string;
-  salaryErr: string;
-  joinDateErr: string;
-  gradeErr: string;
-  birthErr: string;
+export type InputType = {
+    id : string,
+    inputType : {
+      elementType: string,
+      elementConfig: {
+        name: string,
+        placeholder: string,
+      },
+      value: any,
+      validation: {
+        required: boolean,
+      },
+      valid: boolean,
+      errorMessage : string
+    },
 };
 export type RegisterPayloadType = {
   key: RegisterFormType;
   value: any;
 };
-// export interface InputForm {
-//   type : string;
-//   required : boolean;
-//   onChange : (e : React.FormEvent<HTMLInputElement>) =>void;
-//   placeholder : string;
-//   value : string;
-//   name : string;
-// }
+
 const SET_USER_DATA = 'workerRegister/SET_USER_DATA';
-const SET_ERROR_MESSAGE = 'workerRegister/SET_ERROR_MESSAGE';
-const SET_INPUT_ELE_MSG ='workerRegister/SET_INPUT_ELE_MSG';
+const SET_INPUT_ELE_MSG = 'workerRegister/SET_INPUT_ELE_MSG';
 const SET_INPUT_FORM = 'workerRegister/SET_INPUT_FORM';
+const SET_INPUT_DATA = 'workerRegister/SET_INPUT_DATA';
+const SET_VALID = 'workerRegister/SET_VALID';
+
 export const userRegisterActions = {
   setUserData: createAction(SET_USER_DATA, ({ key, value }: any) => ({
     key,
     value,
   })),
-  setErrorMessage : createAction(SET_ERROR_MESSAGE),
-  setInputEleErrMsg : createAction(SET_INPUT_ELE_MSG)
+  setInputData: createAction(SET_INPUT_DATA),
+  setInputEleErrMsg: createAction(SET_INPUT_ELE_MSG),
+  setInputForm: createAction(SET_INPUT_FORM),
+  setValid : createAction(SET_VALID)
 };
 
 type SetUserData = ReturnType<typeof userRegisterActions.setUserData>;
-type SetErrorMessage = ReturnType<typeof userRegisterActions.setErrorMessage>;
-type setInputEleErrMsg = ReturnType<typeof userRegisterActions.setInputEleErrMsg>;
-
+type SetInputData = ReturnType<typeof userRegisterActions.setInputData>;
+type SetInputEleErrMsg = ReturnType<
+  typeof userRegisterActions.setInputEleErrMsg
+>;
+type SetInputForm = ReturnType<typeof userRegisterActions.setInputForm>;
+type SetValid = ReturnType<typeof userRegisterActions.setValid>
 export type RegisterState = {
   register: any;
-  validation: ErrorType;
-  inputType : any;
+  inputData: null | InputType[];
+  inputType: {};
 };
 const initialState: RegisterState = {
   register: {
@@ -60,28 +68,21 @@ const initialState: RegisterState = {
     join_date: '',
     grade: '',
     birth: '',
-    errorMessage: '',
   },
-  validation: {
-    emailErr: '',
-    workerNameErr: '',
-    salaryErr: '',
-    joinDateErr: '',
-    gradeErr: '',
-    birthErr: '',
-  },
-  inputType : {
-    elementType : 'input',
-    elementConfig : {
-      type : '',
-      placeholder : '',
+  inputData: null,
+  inputType: 
+    {
+      elementType: 'input',
+      elementConfig: {
+        name: '',
+        placeholder: '',
+      },
+      validation: {
+        required: true,
+      },
+      valid: false,
+      errorMessage : ''
     },
-    value : '',
-    validation : {
-      required : true,
-    },
-    valid : false,
-  }
 };
 const userRegister = handleActions<RegisterState, any>(
   {
@@ -90,9 +91,19 @@ const userRegister = handleActions<RegisterState, any>(
         draft.register[key] = value;
       });
     },
-    [SET_ERROR_MESSAGE] : (state, action :SetErrorMessage) => {
+    [SET_INPUT_DATA]: (state, action: SetInputData) => {
       return produce(state, draft => {
-        draft.register.errorMessage = action.payload;
+        if(draft.inputData === null) {
+          draft.inputData = action.payload
+        }
+      });
+    },
+    [SET_VALID] : (state, {payload : {idNum, validCheck}} : SetValid) => {
+      return produce(state, draft => {
+        if(draft.inputData !== null){
+          console.log(draft.inputData[idNum].inputType.valid)
+          draft.inputData[idNum].inputType.valid = validCheck;
+        }
       })
     }
   },

@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from 'components/UI/Layout';
-import Register from 'components/Register';
+import RegisterContainer from 'containers/RegisterContainer';
 
 const workerRegister: React.FC = ({match}:any) => {
   return (
     <Layout pageType = 'Register'>
-      <Register />
+      <RegisterContainer />
     </Layout>
   )
 }
