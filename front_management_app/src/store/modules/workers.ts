@@ -39,7 +39,7 @@ export const workersActions = {
     selectedInfoType => selectedInfoType,
   ),
   selectedInfo: createAction<boolean>(SELECTED_INFO),
-  loadWorker : createAction(LOAD_WORKER)
+  loadWorker: createAction(LOAD_WORKER),
 };
 type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
@@ -50,7 +50,7 @@ export type WorkerState = {
   count: number;
   selectedInfoType: string;
   selectedInfo: boolean;
-  worker : null | WorkerInfo
+  worker: null | WorkerInfo;
 };
 
 const initialState: WorkerState = {
@@ -58,7 +58,7 @@ const initialState: WorkerState = {
   count: 0,
   selectedInfoType: '',
   selectedInfo: false,
-  worker : null
+  worker: null,
 };
 
 const workers = handleActions<WorkerState, any>(
@@ -78,12 +78,12 @@ const workers = handleActions<WorkerState, any>(
         draft.selectedInfo = action.payload;
       });
     },
-    [LOAD_WORKER] : (state,action : LoadWorker) => {
+    [LOAD_WORKER]: (state, action: LoadWorker) => {
       return produce(state, draft => {
         const data = action.payload;
         console.log(data);
-      })
-    }
+      });
+    },
   },
   initialState,
 );
