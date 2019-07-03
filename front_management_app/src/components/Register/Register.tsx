@@ -9,7 +9,7 @@ const Register: React.FC<registerProps> = ({onSubmit,children}) => {
   return (
     <div className = {classes.Wrapper}>
       {children}
-      <Button btnType="register" btnValue="가입" />
+      <Button btnType="register" btnValue="가입" clicked = {onSubmit}/>
     </div>
   )
 };

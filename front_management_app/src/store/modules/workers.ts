@@ -10,6 +10,7 @@ const COUNT = 'workers/COUNT';
 const INCREMENT = 'workers/INCREMENT';
 const SELECTED_INFO_TYPE = 'workers/SELECTED_INFO_TYPE';
 const SELECTED_INFO = 'workers/SELECTED_INFO';
+const POST_NEW_WORKER = 'workerRegister/POST_NEW_WORKER';
 
 export type WorkerInfo = {
   id: number;
@@ -40,13 +41,16 @@ export const workersActions = {
   ),
   selectedInfo: createAction<boolean>(SELECTED_INFO),
   loadWorker : createAction<WorkerInfo>(LOAD_WORKER),
-  unLoadWorker : createAction(UNLOAD_WORKER)
+  unLoadWorker : createAction(UNLOAD_WORKER),
+  postNewWorker : createAction(POST_NEW_WORKER, api.updateNewWorker)
+
 };
 type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
 type LoadWorker = ReturnType<typeof workersActions.loadWorker>;
 type UnLoadWorker = ReturnType<typeof workersActions.unLoadWorker>;
+type PostNewWorker = ReturnType<typeof workersActions.postNewWorker>;
 
 export type WorkerState = {
   workerList: null | WorkerInfo[];
@@ -90,6 +94,12 @@ const workers = handleActions<WorkerState, any>(
     [UNLOAD_WORKER] : (state, action : UnLoadWorker) => {
       return produce(state, draft => {
         draft.worker = null;
+      })
+    },
+    [POST_NEW_WORKER] : (state, action : PostNewWorker) => {
+      return produce(state, draft => {
+        console.log(action.payload);
+        // draft.workerList.push(action.payload)
       })
     }
   },

@@ -1,5 +1,6 @@
 import { handleActions, createAction } from 'redux-actions';
 import produce from 'immer';
+import * as api from 'libs/api';
 
 export interface RegisterFormType {
   workerName: string;
@@ -36,7 +37,7 @@ const SET_INPUT_ELE_MSG = 'workerRegister/SET_INPUT_ELE_MSG';
 const SET_INPUT_FORM = 'workerRegister/SET_INPUT_FORM';
 const SET_INPUT_DATA = 'workerRegister/SET_INPUT_DATA';
 const SET_VALID = 'workerRegister/SET_VALID';
-
+const POST_NEW_WORKER = 'workerRegister/POST_NEW_WORKER';
 export const userRegisterActions = {
   setUserData: createAction(SET_USER_DATA, ({ key, value }: any) => ({
     key,
@@ -45,7 +46,8 @@ export const userRegisterActions = {
   setInputData: createAction(SET_INPUT_DATA),
   setInputEleErrMsg: createAction(SET_INPUT_ELE_MSG),
   setInputForm: createAction(SET_INPUT_FORM),
-  setValid : createAction(SET_VALID)
+  setValid : createAction(SET_VALID),
+  postNewWorker : createAction(POST_NEW_WORKER, api.updateNewWorker)
 };
 
 type SetUserData = ReturnType<typeof userRegisterActions.setUserData>;
@@ -55,6 +57,7 @@ type SetInputEleErrMsg = ReturnType<
 >;
 type SetInputForm = ReturnType<typeof userRegisterActions.setInputForm>;
 type SetValid = ReturnType<typeof userRegisterActions.setValid>
+type PostNewWorker = ReturnType<typeof userRegisterActions.postNewWorker>;
 export type RegisterState = {
   register: any;
   inputData: null | InputType[];
@@ -88,6 +91,7 @@ const userRegister = handleActions<RegisterState, any>(
   {
     [SET_USER_DATA]: (state, { payload: { value, key } }: SetUserData) => {
       return produce(state, draft => {
+        console.log(value, key)
         draft.register[key] = value;
       });
     },
@@ -104,6 +108,11 @@ const userRegister = handleActions<RegisterState, any>(
           console.log(draft.inputData[idNum].inputType.valid)
           draft.inputData[idNum].inputType.valid = validCheck;
         }
+      })
+    },
+    [POST_NEW_WORKER] : (state, action : PostNewWorker) => {
+      return produce(state, draft => {
+        
       })
     }
   },

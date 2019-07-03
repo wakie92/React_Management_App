@@ -1,7 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { createStandardAction, createReducer, ActionType } from 'typesafe-actions';
 import produce from 'immer';
-import { updateKey } from '../utils';
 
 export type BoardContent = {
   id: number;
