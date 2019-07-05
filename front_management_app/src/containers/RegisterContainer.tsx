@@ -11,34 +11,49 @@ import Register from 'components/Register';
 import InputForm from 'components/InputForm';
 import { workersActions } from 'store/modules/workers';
 import { updateNewWorker } from 'libs/api';
+import { Redirect } from 'react-router-dom';
 
 interface IProps {
   register: any;
   inputType: {};
   inputData: null | InputType[];
-  WorkersActions : typeof workersActions;
+  WorkersActions: typeof workersActions;
   UserRegisterActions: typeof userRegisterActions;
+  history: any;
 }
 interface IState {}
 
 class RegisterContainer extends Component<IProps, IState> {
-
-  handleChange = (e: FormEvent<HTMLInputElement> , idNum: number, id: string) => {
+  handleChange = (
+    e: FormEvent<HTMLInputElement>,
+    idNum: number,
+    id: string,
+  ) => {
     const { value, name } = e.currentTarget;
     const { UserRegisterActions, inputData } = this.props;
-    const rules = inputData !== null && inputData[idNum].inputType.validation.required;
-    const validCheck = this.checkValidity(value, rules, id)
-    UserRegisterActions.setValid({idNum,validCheck});
+    const rules =
+      inputData !== null && inputData[idNum].inputType.validation.required;
+    const validCheck = this.checkValidity(value, rules, id);
+    UserRegisterActions.setValid({ idNum, validCheck });
     UserRegisterActions.setUserData({ value, key: name });
   };
 
-  handleDate = (value : Date |null,id : string) => {
-    const { UserRegisterActions }= this.props;
-    UserRegisterActions.setUserData({value, key : id})
-  }
+  handleDate = (value: Date | null, idNum: number, id: string) => {
+    const { UserRegisterActions, inputData } = this.props;
+    const rules =
+      inputData !== null && inputData[idNum].inputType.validation.required;
+    const validCheck = this.checkValidity(value, rules, id);
+    UserRegisterActions.setValid({ idNum, validCheck });
+    UserRegisterActions.setUserData({ value, key: id });
+  };
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { UserRegisterActions ,inputData, WorkersActions} = this.props;
+    const {
+      UserRegisterActions,
+      history,
+      inputData,
+      WorkersActions,
+    } = this.props;
     const {
       email,
       workerName,
@@ -47,34 +62,40 @@ class RegisterContainer extends Component<IProps, IState> {
       birth,
       salary,
     } = this.props.register;
-    // if (
-    //   [email, workerName, join_date, grade, birth].includes('') &&
-    //   salary === 0
-    // )
-    console.log('clicked')
-    updateNewWorker({email,workerName,
-      join_date,
-      grade,
-      birth,
-      salary})
+    if (
+      [email, workerName, join_date, grade, birth].includes('') &&
+      salary === 0
+    ) return alert('필수항목을 입력해주세요');
+    updateNewWorker({email,name: workerName, join_date, grade, birth, salary})
+    .then(res => {
+      if (res.status === 200) {
+        UserRegisterActions.resetInputForm();
+        return history.push(`/workersList`);
+      } else {
+        return <Redirect to="/register" />;
+      }
+    });
   };
-  checkValidity(value: any, rules: boolean, id : string) {
-    //유효성검사
+  checkValidity(value: any, rules: boolean, id: string) {
     let isValid = true;
-    if(!rules) {
-        return true;
+    if (!rules) {
+      return true;
     }
-    if(rules) {
-        isValid = value.trim() !== '' && isValid;
+    // if (id === 'join_date') {
+    //   isValid = true;
+    // }
+    if (id === 'salary') {
+      const pattern = /[^0-9]/g;
+      isValid = !pattern.test(value) && isValid;
     }
     if (id === 'email') {
-        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        isValid = pattern.test( value ) && isValid
+      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+      isValid = pattern.test(value) && isValid;
     }
     return isValid;
   }
   render() {
-    const { handleChange, handleSubmit ,handleDate} = this;
+    const { handleChange, handleSubmit, handleDate } = this;
     const { inputData, register, UserRegisterActions } = this.props;
     let formElements = [];
     for (let data in register) {
@@ -89,27 +110,28 @@ class RegisterContainer extends Component<IProps, IState> {
             required: true,
           },
           valid: false,
-          errorMessage : ''
+          errorMessage: '',
         },
       });
     }
     UserRegisterActions.setInputData(formElements);
-    console.log(inputData);
-    const form = inputData !== null && inputData.map((formType, idx) => {
-      return (
-        <InputForm
-          elementConfig={formType.inputType.elementConfig}
-          value={register[`${formType.id}`]}
-          valid={formType.inputType.valid}
-          rule={formType.inputType.validation}
-          id={formType.id}
-          onChange={handleChange}
-          onDate = {handleDate}
-          key={formType.id}
-          idNum={idx}
-        />
-      );
-    });
+    const form =
+      inputData !== null &&
+      inputData.map((formType, idx) => {
+        return (
+          <InputForm
+            elementConfig={formType.inputType.elementConfig}
+            value={register[`${formType.id}`]}
+            valid={formType.inputType.valid}
+            rule={formType.inputType.validation}
+            id={formType.id}
+            onChange={handleChange}
+            onDate={handleDate}
+            key={formType.id}
+            idNum={idx}
+          />
+        );
+      });
     return <Register onSubmit={handleSubmit}>{form}</Register>;
   }
 }
@@ -122,6 +144,6 @@ export default connect(
   }),
   dispatch => ({
     UserRegisterActions: bindActionCreators(userRegisterActions, dispatch),
-    WorkersActions : bindActionCreators(workersActions, dispatch)
+    WorkersActions: bindActionCreators(workersActions, dispatch),
   }),
 )(RegisterContainer);

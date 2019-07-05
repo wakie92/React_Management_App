@@ -38,6 +38,8 @@ const SET_INPUT_FORM = 'workerRegister/SET_INPUT_FORM';
 const SET_INPUT_DATA = 'workerRegister/SET_INPUT_DATA';
 const SET_VALID = 'workerRegister/SET_VALID';
 const POST_NEW_WORKER = 'workerRegister/POST_NEW_WORKER';
+const RESET_INPUT_FORM = 'workerRegister/RESET_INPUT_FORM'
+
 export const userRegisterActions = {
   setUserData: createAction(SET_USER_DATA, ({ key, value }: any) => ({
     key,
@@ -47,7 +49,8 @@ export const userRegisterActions = {
   setInputEleErrMsg: createAction(SET_INPUT_ELE_MSG),
   setInputForm: createAction(SET_INPUT_FORM),
   setValid : createAction(SET_VALID),
-  postNewWorker : createAction(POST_NEW_WORKER, api.updateNewWorker)
+  postNewWorker : createAction(POST_NEW_WORKER, api.updateNewWorker),
+  resetInputForm : createAction(RESET_INPUT_FORM)
 };
 
 type SetUserData = ReturnType<typeof userRegisterActions.setUserData>;
@@ -58,6 +61,7 @@ type SetInputEleErrMsg = ReturnType<
 type SetInputForm = ReturnType<typeof userRegisterActions.setInputForm>;
 type SetValid = ReturnType<typeof userRegisterActions.setValid>
 type PostNewWorker = ReturnType<typeof userRegisterActions.postNewWorker>;
+type ResetInputForm = ReturnType<typeof userRegisterActions.resetInputForm>
 export type RegisterState = {
   register: any;
   inputData: null | InputType[];
@@ -110,9 +114,9 @@ const userRegister = handleActions<RegisterState, any>(
         }
       })
     },
-    [POST_NEW_WORKER] : (state, action : PostNewWorker) => {
+    [RESET_INPUT_FORM] : (state, action : ResetInputForm) => {
       return produce(state, draft => {
-        
+        draft.register = initialState.register
       })
     }
   },
