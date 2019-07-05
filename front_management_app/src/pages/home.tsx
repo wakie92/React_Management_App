@@ -1,10 +1,10 @@
 import React from 'react';
 import HomeContainer from 'containers/LogInContainer';
 
-const home: React.FC = () => {
+const home: React.FC = ({ history }: any) => {
   return (
     <>
-      <HomeContainer />
+      <HomeContainer history={history} />
     </>
   );
 };

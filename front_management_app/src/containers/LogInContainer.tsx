@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Home from 'components/Home';
-import { LoginActions, LoginState } from 'store/modules/Login';
 import { Form, Icon, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import 'antd/dist/antd.css';
 import axios from 'axios-base';
+
 interface LoginFormProps extends FormComponentProps {
   email?: string;
+  history: any;
 }
 
-const HomeContainer: React.FC<LoginFormProps> = ({ form }) => {
+const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
   useEffect(() => {
     form.validateFields();
   }, []);
-
-  const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,10 +21,12 @@ const HomeContainer: React.FC<LoginFormProps> = ({ form }) => {
       if (!err) {
         axios
           .post(`/users/login`, value)
-          .then(res => console.log(res))
+          .then(res => {
+            if (res.data.user_type == 'M') {
+              return history.push('/workerslist');
+            } else history.push(`/workerinfo/detail/${res.data.id}`);
+          })
           .catch(e => console.log(e));
-        // dispatch(LoginActions.Log_In_Request(value));
-        // console.log(LoginActions.Log_In_Request(value));
       }
     });
   };

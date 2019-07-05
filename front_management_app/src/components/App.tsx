@@ -8,7 +8,7 @@ import {
   Notice,
   Editor,
   ErrorPage,
-  Register
+  Register,
 } from 'pages';
 
 class App extends Component {
