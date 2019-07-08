@@ -5,7 +5,7 @@ import * as api from 'libs/api';
 export interface RegisterFormType {
   workerName: string;
   email: string;
-  salary: number;
+  salary: null | number;
   join_date: string;
   birth: string;
   grade: string;
@@ -55,13 +55,9 @@ export const userRegisterActions = {
 
 type SetUserData = ReturnType<typeof userRegisterActions.setUserData>;
 type SetInputData = ReturnType<typeof userRegisterActions.setInputData>;
-type SetInputEleErrMsg = ReturnType<
-  typeof userRegisterActions.setInputEleErrMsg
->;
-type SetInputForm = ReturnType<typeof userRegisterActions.setInputForm>;
 type SetValid = ReturnType<typeof userRegisterActions.setValid>
-type PostNewWorker = ReturnType<typeof userRegisterActions.postNewWorker>;
 type ResetInputForm = ReturnType<typeof userRegisterActions.resetInputForm>
+
 export type RegisterState = {
   register: any;
   inputData: null | InputType[];
@@ -71,7 +67,7 @@ const initialState: RegisterState = {
   register: {
     email: '',
     workerName: '',
-    salary: 0,
+    salary: null,
     join_date: '',
     grade: '',
     birth: '',

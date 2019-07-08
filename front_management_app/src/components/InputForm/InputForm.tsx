@@ -11,7 +11,7 @@ interface InputFormProps {
   idNum: number;
   onDate: (value: Date | null, idNum : number,  id: string) => void;
   onChange: (
-    e: React.FormEvent<HTMLInputElement>,
+    e: React.FormEvent<HTMLInputElement>| React.FormEvent<HTMLSelectElement>,
     idNum: number,
     id: string,
   ) => void;
@@ -20,7 +20,6 @@ const InputForm: React.FC<InputFormProps> = ({
   elementConfig,
   valid,
   value,
-  rule,
   onDate,
   onChange,
   idNum,
@@ -42,7 +41,15 @@ const InputForm: React.FC<InputFormProps> = ({
           selected={value}
           placeholderText={elementConfig.placeholder}
         />
-      ) : (
+      ) : id === 'grade' ?
+        (<select value = {value} onChange = {e => onChange(e, idNum , id)}>
+          <option value = {''} defaultValue = {''}>------GRADE------</option>
+          <option value = '신입' >신입</option>
+          <option value = '대리' >대리</option>
+          <option value = '과장' >과장</option>
+          <option value = '팀장' >팀장</option>
+         </select>)
+      : (
         <input
           type="text"
           value={value}

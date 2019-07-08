@@ -2,9 +2,12 @@
 
 .InputWrapper {
   padding :  0.8px;
-  input {
+  input, select {
     border-radius: 2px;
     font-size: 15px;
     padding : 5px;
+  }
+  select {
+    width :  100%;
   }
 }
