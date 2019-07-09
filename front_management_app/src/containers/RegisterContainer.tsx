@@ -12,12 +12,15 @@ import { workersActions } from 'store/modules/workers';
 import { updateNewWorker } from 'libs/api';
 
 interface IProps {
+  
   register: any;
   inputType: {};
   inputData: null | InputType[];
   WorkersActions: typeof workersActions;
   UserRegisterActions: typeof userRegisterActions;
   history: any;
+  auth: any;
+  authError : any;
 }
 interface IState {}
 
@@ -48,32 +51,32 @@ class RegisterContainer extends Component<IProps, IState> {
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { UserRegisterActions, history, inputData } = this.props;
-    const { email, workerName, join_date, grade, birth, salary } = this.props.register;
-
-    updateNewWorker({
-      email,
-      name: workerName,
-      join_date,
-      grade,
-      birth,
-      salary,
-    }).then(res => {
-      if (res.status === 200) {
-        UserRegisterActions.resetInputForm();
-        alert(res.data.message);
-        return history.push(`/workersList`);
-      }
-    }).catch(e => {
-      const {data, status} = e.response
-      switch(status) {
-        case 409 : 
-        case 400 : 
-          alert(data.message);
-          break;
-        default :
-          break;
-      }
-    });
+    const { email, name, join_date, grade, birth, salary } = this.props.register;
+    UserRegisterActions.register({email, name, join_date, grade, birth, salary})
+    // updateNewWorker({
+    //   email,
+    //   name: workerName,
+    //   join_date,
+    //   grade,
+    //   birth,
+    //   salary,
+    // }).then(res => {
+    //   if (res.status === 200) {
+    //     UserRegisterActions.resetInputForm();
+    //     alert(res.data.message);
+    //     return history.push(`/workersList`);
+    //   }
+    // }).catch(e => {
+    //   const {data, status} = e.response
+    //   switch(status) {
+    //     case 409 : 
+    //     case 400 : 
+    //       alert(data.message);
+    //       break;
+    //     default :
+    //       break;
+    //   }
+    // });
   };
   checkValidity(value: any, rules: boolean, id: string) {
     let isValid = true;
@@ -95,9 +98,13 @@ class RegisterContainer extends Component<IProps, IState> {
     }
     return isValid;
   }
+  componentDidMount() {
+    const { auth , authError} = this.props;
+    console.log(auth,authError)
+  }
   render() {
     const { handleChange, handleSubmit, handleDate } = this;
-    const { inputData, register, UserRegisterActions } = this.props;
+    const { inputData, register, UserRegisterActions, auth, authError } = this.props;
     let formElements = [];
     for (let data in register) {
       formElements.push({
@@ -142,6 +149,8 @@ export default connect(
     register: userRegister.register,
     inputType: userRegister.inputType,
     inputData: userRegister.inputData,
+    auth : userRegister.auth,
+    authError : userRegister.authError
   }),
   dispatch => ({
     UserRegisterActions: bindActionCreators(userRegisterActions, dispatch),

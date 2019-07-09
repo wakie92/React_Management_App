@@ -9,4 +9,5 @@ export const getWorkers = api
 export const getWorkerInfo = (id: number) => {
   return api.get(`/users/${id}`).then(res => res.data);
 };
-export const updateNewWorker = (data: any) => {return api.post(`/users/enroll`, data)}
+export const updateNewWorker = (data: any) => api.post<UpdateNewWorkerResponse>(`/users/enroll`, data)
+export type UpdateNewWorkerResponse = { message : string }
