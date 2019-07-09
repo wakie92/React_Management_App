@@ -7,7 +7,7 @@ import {
   Notice,
   Editor,
   ErrorPage,
-  WorkerRegister
+  Register,
 } from 'pages';
 
 class App extends Component {
