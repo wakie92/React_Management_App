@@ -2,8 +2,9 @@
 import { handleActions, createAction, createActions } from 'redux-actions';
 import { produce } from 'immer';
 import * as api from 'libs/api';
+import { takeLatest } from 'redux-saga/effects';
+import createRequestSaga, { createRequestActionTypes } from 'libs/createRequestSaga';
 
-const GET_WORKERS_LIST = 'workers/GET_WORKERS_LIST';
 const LOAD_WORKER = 'workers/LOAD_WORKER';
 const UNLOAD_WORKER = 'workers/UNLOAD_WORKER';
 const COUNT = 'workers/COUNT';
@@ -11,6 +12,13 @@ const INCREMENT = 'workers/INCREMENT';
 const SELECTED_INFO_TYPE = 'workers/SELECTED_INFO_TYPE';
 const SELECTED_INFO = 'workers/SELECTED_INFO';
 const POST_NEW_WORKER = 'workerRegister/POST_NEW_WORKER';
+
+// const [ GET_WORKERS_LIST, 
+//         GET_WORKERS_LIST_SUCCESS, 
+//         GET_WORKERS_LIST_FAILURE] = createRequestActionTypes('workers/GET_WORKERS_LIST')
+const [ GET_LIST, 
+        GET_LIST_SUCCESS, 
+        GET_LIST_FAILURE] = createRequestActionTypes('workers/GET_LIST')
 
 export type WorkerInfo = {
   id: number;
@@ -30,11 +38,8 @@ export type WorkerInfo = {
   total_year_vacation: number;
 };
 export const workersActions = {
-  // 밑에 방법은 왜안되는지 무슨차이인지 알아내기
-  // getWorkersList: createAction<Promise<void>>(GET_WORKERS_LIST,api.getWorkers),
-  getWorkersList: createAction<WorkerInfo[]>(GET_WORKERS_LIST),
-  count: createAction<number>(COUNT),
-  increment: createAction<number>(INCREMENT),
+  // getWorkersList: createAction(GET_WORKERS_LIST),
+  getList : createAction(GET_LIST),
   selectedInfoType: createAction<string, string>(
     SELECTED_INFO_TYPE,
     selectedInfoType => selectedInfoType,
@@ -45,15 +50,22 @@ export const workersActions = {
   postNewWorker : createAction(POST_NEW_WORKER, api.updateNewWorker)
 
 };
-type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
+// type GetWorkersList = ReturnType<typeof workersActions.getWorkersList>;
 type SelectedInfoType = ReturnType<typeof workersActions.selectedInfoType>;
 type SelectedInfo = ReturnType<typeof workersActions.selectedInfo>;
 type LoadWorker = ReturnType<typeof workersActions.loadWorker>;
 type UnLoadWorker = ReturnType<typeof workersActions.unLoadWorker>;
 type PostNewWorker = ReturnType<typeof workersActions.postNewWorker>;
 
+const getWorkersListSG = createRequestSaga(GET_LIST, api.getWorkers)
+export function* getWorkersListSaga() {
+  console.log('startSaga')
+  yield takeLatest(GET_LIST,getWorkersListSG);
+}
+
+
 export type WorkerState = {
-  workerList: null | WorkerInfo[];
+  workerList: undefined | WorkerInfo[];
   count: number;
   selectedInfoType: string;
   selectedInfo: boolean;
@@ -61,7 +73,7 @@ export type WorkerState = {
 };
 
 const initialState: WorkerState = {
-  workerList: null,
+  workerList: undefined,
   count: 0,
   selectedInfoType: '',
   selectedInfo: false,
@@ -70,10 +82,21 @@ const initialState: WorkerState = {
 
 const workers = handleActions<WorkerState, any>(
   {
-    [GET_WORKERS_LIST]: (state, action: GetWorkersList) => {
+    // [GET_WORKERS_LIST]: (state, action: GetWorkersList) => {
+    //   return produce(state, draft => {
+    //     console.log(action);
+    //     draft.workerList = action.payload;
+    //   });
+    // },
+    [GET_LIST_SUCCESS] :(state, {payload : data} ) => {
       return produce(state, draft => {
-        draft.workerList = action.payload;
-      });
+        console.log(data)
+      })
+    },
+    [GET_LIST_FAILURE] :(state, {payload : data} ) => {
+      return produce(state, draft => {
+        console.log(data)
+      })
     },
     [SELECTED_INFO_TYPE]: (state, action: SelectedInfoType) => {
       return produce(state, draft => {

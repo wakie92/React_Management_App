@@ -3,6 +3,7 @@ import classes from './Register.module.scss';
 import Button from '../UI/Button';
 interface registerProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  children : JSX.Element;
 }
 
 const Register: React.FC<registerProps> = ({onSubmit,children}) => {
@@ -13,4 +14,4 @@ const Register: React.FC<registerProps> = ({onSubmit,children}) => {
     </div>
   )
 };
-export default Register;
+export default React.memo(Register);

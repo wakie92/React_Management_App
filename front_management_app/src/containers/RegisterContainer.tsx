@@ -1,88 +1,69 @@
-import React, { Component, FormEvent } from 'react';
-import { connect } from 'react-redux';
+import React, { FormEvent, useEffect, useCallback } from 'react';
+import { WorkerInfo, workersActions } from 'store/modules/workers';
+import { useSelector, useDispatch } from 'react-redux';
+import { InputType, userRegisterActions } from 'store/modules/workerRegister';
 import { StoreState } from 'store/modules';
-import {
-  userRegisterActions,
-  InputType,
-} from 'store/modules/workerRegister';
-import { bindActionCreators } from 'redux';
-import Register from 'components/Register';
 import InputForm from 'components/InputForm';
-import { workersActions } from 'store/modules/workers';
-import { updateNewWorker } from 'libs/api';
+import Register from 'components/Register';
+import FormTemplate from 'components/UI/FormTemplate';
 
-interface IProps {
-  
-  register: any;
-  inputType: {};
-  inputData: null | InputType[];
-  WorkersActions: typeof workersActions;
-  UserRegisterActions: typeof userRegisterActions;
-  history: any;
-  auth: any;
-  authError : any;
+interface  IProps {
+  history : any
 }
-interface IState {}
+const RegisterContainer : React.FunctionComponent<IProps> = ({history}) => {
+  const { register, inputData, auth, authError } = useSelector(({userRegister}: StoreState) => ({
+    register: userRegister.register,
+    inputType: userRegister.inputType,
+    inputData: userRegister.inputData,
+    auth : userRegister.auth,
+    authError : userRegister.authError 
+  }))
+  const dispatch = useDispatch();
 
-class RegisterContainer extends Component<IProps, IState> {
- 
-  handleChange = (
+  useEffect(() => {
+    if(auth) {
+      alert(auth.message);
+      dispatch(userRegisterActions.resetInputForm());
+      history.push('/workersList');
+    }
+    if(authError) {
+      switch(authError.status) {
+        case 400 :
+        case 409 : 
+          alert(authError.data.message);
+          break;
+        default : 
+          break;
+      }
+    }
+  },[auth , authError, dispatch])
+
+  const handleChange = useCallback((
     e: FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>,
     idNum: number,
     id: string,
   ) => {
     const { value } = e.currentTarget;
-    this.setCheck(value, idNum, id);
-  };
+    setCheck(value, idNum, id);
+  },[])
 
-  handleDate = (value: Date | null, idNum: number, id: string) => {
-    this.setCheck(value, idNum, id);
-  };
+  const handleDate = useCallback((value: Date | null, idNum: number, id: string) => {
+    setCheck(value, idNum, id);
+  },[]);
 
-  setCheck = (value: string| Date | null, idNum : number, id : string) => {
-    const { UserRegisterActions, inputData } = this.props;
+  const setCheck = useCallback((value: string| Date | null, idNum : number, id : string) => {
     const rules =
       inputData !== null && inputData[idNum].inputType.validation.required;
-    const validCheck = this.checkValidity(value, rules, id);
-    UserRegisterActions.setValid({ idNum, validCheck });
-    UserRegisterActions.setUserData({ value, key: id });
-  }
+    const validCheck = checkValidity(value, rules, id);
+    dispatch(userRegisterActions.setValid({idNum, validCheck}));
+    dispatch(userRegisterActions.setUserData({value, key : id}));
+  },[])
 
-  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { UserRegisterActions, history, inputData } = this.props;
-    const { email, name, join_date, grade, birth, salary } = this.props.register;
-    UserRegisterActions.register({email, name, join_date, grade, birth, salary})
-    // updateNewWorker({
-    //   email,
-    //   name: workerName,
-    //   join_date,
-    //   grade,
-    //   birth,
-    //   salary,
-    // }).then(res => {
-    //   if (res.status === 200) {
-    //     UserRegisterActions.resetInputForm();
-    //     alert(res.data.message);
-    //     return history.push(`/workersList`);
-    //   }
-    // }).catch(e => {
-    //   const {data, status} = e.response
-    //   switch(status) {
-    //     case 409 : 
-    //     case 400 : 
-    //       alert(data.message);
-    //       break;
-    //     default :
-    //       break;
-    //   }
-    // });
-  };
-  checkValidity(value: any, rules: boolean, id: string) {
+  const checkValidity = useCallback((value: any, rules: boolean, id: string) => {
     let isValid = true;
-    if (!rules) {
-      return true;
-    }
+    // if (!rules) {
+    //   return true;
+    // }
     if (id === 'join_date' || id === 'birth') {
       isValid = true;
     } else{
@@ -97,63 +78,18 @@ class RegisterContainer extends Component<IProps, IState> {
       isValid = pattern.test(value) && isValid;
     }
     return isValid;
-  }
-  componentDidMount() {
-    const { auth , authError} = this.props;
-    console.log(auth,authError)
-  }
-  render() {
-    const { handleChange, handleSubmit, handleDate } = this;
-    const { inputData, register, UserRegisterActions, auth, authError } = this.props;
-    let formElements = [];
-    for (let data in register) {
-      formElements.push({
-        id: data,
-        inputType: {
-          elementConfig: {
-            name: data,
-            placeholder: data.toUpperCase(),
-          },
-          validation: {
-            required: true,
-          },
-          valid: false,
-          errorMessage: '',
-        },
-      });
-    }
-    UserRegisterActions.setInputData(formElements);
-    const form =
-      inputData !== null &&
-      inputData.map((formType, idx) => {
-        return (
-          <InputForm
-            elementConfig={formType.inputType.elementConfig}
-            value={register[`${formType.id}`]}
-            valid={formType.inputType.valid}
-            rule={formType.inputType.validation}
-            id={formType.id}
-            onChange={handleChange}
-            onDate={handleDate}
-            key={formType.id}
-            idNum={idx}
-          />
-        );
-      });
-    return <Register onSubmit={handleSubmit}>{form}</Register>;
-  }
+  },[])
+  const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { email, name, join_date, grade, birth, salary } = register;
+    dispatch(userRegisterActions.register({email, name, join_date, grade, birth, salary}))
+  },[register])
+
+  return (
+    <Register onSubmit={handleSubmit}>
+      <FormTemplate onChange = {handleChange} onDate = {handleDate}/>
+    </Register>
+  )
 }
 
-export default connect(
-  ({ userRegister }: StoreState) => ({
-    register: userRegister.register,
-    inputType: userRegister.inputType,
-    inputData: userRegister.inputData,
-    auth : userRegister.auth,
-    authError : userRegister.authError
-  }),
-  dispatch => ({
-    UserRegisterActions: bindActionCreators(userRegisterActions, dispatch),
-    WorkersActions: bindActionCreators(workersActions, dispatch),
-  }),
-)(RegisterContainer);
+export default RegisterContainer;

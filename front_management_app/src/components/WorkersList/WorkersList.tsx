@@ -4,20 +4,16 @@ import ListInfoContainer from 'containers/WorkerInfoContainer';
 import { WorkerInfo } from 'store/modules/workers';
 
 interface WorkerListProps {
-  staffList: null | WorkerInfo[];
-  count: number;
-  handleCount: () => void;
+  staffList: undefined | WorkerInfo[];
 }
 
 const WorkersList: React.FC<WorkerListProps> = ({
   staffList,
-  count,
-  handleCount,
 }) => {
+  console.log(staffList);
   return (
     <>
       <div className={classes.Workerlist_layout}>
-        <span onClick={handleCount}>{count}</span>
         <div className={classes.Category_bar}>
           <div className={classes.Category_name}>성명</div>
           <div className={classes.Category_grade}>직급</div>
@@ -27,7 +23,7 @@ const WorkersList: React.FC<WorkerListProps> = ({
         </div>
         <ul>
           {
-            staffList === null ? 
+            staffList === undefined ? 
             <div className = {classes.EmptyBox}></div>
             :
             staffList.map(staff => {

@@ -9,6 +9,7 @@ interface InputFormProps {
   rule: { required: boolean };
   id: string;
   idNum: number;
+  key: string;
   onDate: (value: Date | null, idNum : number,  id: string) => void;
   onChange: (
     e: React.FormEvent<HTMLInputElement>| React.FormEvent<HTMLSelectElement>,
@@ -24,10 +25,11 @@ const InputForm: React.FC<InputFormProps> = ({
   onChange,
   idNum,
   id,
+  key
 }) => {
-  console.log(valid);
   return (
     <div
+      key = {key}
       className={classes.InputWrapper}
       style={
         valid ? { border: '0.5px solid green' } : { border: '0.5px solid red' }
@@ -61,4 +63,4 @@ const InputForm: React.FC<InputFormProps> = ({
     </div>
   );
 };
-export default InputForm;
+export default React.memo(InputForm);

@@ -14,7 +14,7 @@ const [
 export interface RegisterFormType {
   name: string;
   email: string;
-  salary: null | number;
+  salary: undefined | number;
   join_date: string;
   birth: string;
   grade: string;
@@ -23,12 +23,10 @@ export interface RegisterFormType {
 export type InputType = {
   id: string;
   inputType: {
-    elementType: string;
     elementConfig: {
       name: string;
       placeholder: string;
     };
-    value: any;
     validation: {
       required: boolean;
     };
@@ -73,14 +71,14 @@ export type RegisterState = {
   register: any;
   inputData: null | InputType[];
   inputType: {};
-  auth : null | boolean,
-  authError : null | boolean
+  auth : null | any,
+  authError : null | any
 };
 const initialState: RegisterState = {
   register: {
     email: '',
     name: '',
-    salary: null,
+    salary: undefined,
     join_date: '',
     grade: '',
     birth: '',
@@ -104,12 +102,9 @@ const userRegister = handleActions<RegisterState, any>(
   {
     [SET_USER_DATA]: (state, { payload: { value, key } }: SetUserData) => {
       return produce(state, draft => {
-        console.log(value, key);
         draft.register[key] = value;
       });
     },
-
-
     [SET_INPUT_DATA]: (state, action: SetInputData) => {
       return produce(state, draft => {
         if (draft.inputData === null) {
@@ -120,7 +115,6 @@ const userRegister = handleActions<RegisterState, any>(
     [SET_VALID]: (state, { payload: { idNum, validCheck } }: SetValid) => {
       return produce(state, draft => {
         if (draft.inputData !== null) {
-          console.log(draft.inputData[idNum].inputType.valid);
           draft.inputData[idNum].inputType.valid = validCheck;
         }
       });
@@ -130,7 +124,6 @@ const userRegister = handleActions<RegisterState, any>(
         draft.register = initialState.register;
       });
     },
-
     [REGISTER_USER_SUCCESS] : (state, {payload : auth}) => {
       return produce(state, draft => {
         draft.auth = auth;

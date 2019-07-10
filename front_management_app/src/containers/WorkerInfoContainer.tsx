@@ -59,7 +59,6 @@ class WorkerInfoContainer extends Component<IProps, IState> {
     const { staff, selectedInfo } = this.props;
     const { onShowInfoBox } = this;
     const { selectedInfoJSX } = this.state;
-    console.log();
     return (
       <ListInfo
         id={staff.id}
