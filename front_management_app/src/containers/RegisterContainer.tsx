@@ -1,9 +1,7 @@
 import React, { FormEvent, useEffect, useCallback } from 'react';
-import { WorkerInfo, workersActions } from 'store/modules/workers';
 import { useSelector, useDispatch } from 'react-redux';
-import { InputType, userRegisterActions } from 'store/modules/workerRegister';
+import { userRegisterActions } from 'store/modules/workerRegister';
 import { StoreState } from 'store/modules';
-import InputForm from 'components/InputForm';
 import Register from 'components/Register';
 import FormTemplate from 'components/UI/FormTemplate';
 
