@@ -26,7 +26,7 @@ const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
               return history.push('/workerslist');
             } else history.push(`/workerinfo/detail/${res.data.id}`);
           })
-          .catch(e => console.log(e));
+          .catch(e => console.log(e.data));
       }
     });
   };
