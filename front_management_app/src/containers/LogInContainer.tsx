@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, FormEvent } from 'react';
 import Home from 'components/Home';
 import { Form, Icon, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import 'antd/dist/antd.css';
 import axios from 'axios-base';
+import { useSelector, useDispatch } from 'react-redux';
+import { StoreState } from 'store/modules';
+import { LoginActions } from 'store/modules/login';
 
 interface LoginFormProps extends FormComponentProps {
   email?: string;
@@ -11,25 +14,35 @@ interface LoginFormProps extends FormComponentProps {
 }
 
 const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
+
+  const { isLoggedIn , userInfo } = useSelector(({login} : StoreState) => ({
+    isLoggedIn : login.isLoggedIn,
+    userInfo : login.userInfo,
+  }))
+
+  const dispatch = useDispatch();
+  
+  const handleChange = useCallback((e: FormEvent<HTMLInputElement>) => {
+    const { value, name } = e.currentTarget;
+    console.log(value)
+    dispatch(LoginActions.setInfo({name, value}))
+  },[])
+
   useEffect(() => {
     form.validateFields();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  //로그인성공 받은 상태값마다 다르게 설정해야함 
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     form.validateFields((err, value) => {
+      const { email, password } = userInfo;
       if (!err) {
-        axios
-          .post(`/users/login`, value)
-          .then(res => {
-            if (res.data.user_type == 'M') {
-              return history.push('/workerslist');
-            } else history.push(`/workerinfo/detail/${res.data.id}`);
-          })
-          .catch(e => console.log(e.data));
+        console.log(email, password)
+        dispatch(LoginActions.LoginReq({email, password}));
       }
     });
-  };
+  },[userInfo]);
 
   const emailError =
     form.isFieldTouched('email') && form.getFieldError('email');
@@ -56,6 +69,8 @@ const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
             ],
           })(
             <Input
+              onChange = {handleChange}
+              name = 'email'
               prefix={
                 <Icon
                   type="mail"
@@ -81,6 +96,8 @@ const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
             ],
           })(
             <Input
+              onChange = {handleChange}
+              name = 'password'
               prefix={
                 <Icon
                   type="lock"

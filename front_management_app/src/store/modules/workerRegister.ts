@@ -5,6 +5,7 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from 'libs/createRequestSaga';
 import { takeLatest } from 'redux-saga/effects';
+
 const [
   REGISTER_USER,
   REGISTER_USER_SUCCESS,
