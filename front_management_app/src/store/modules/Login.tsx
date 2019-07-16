@@ -69,19 +69,22 @@ const Login = handleActions<LoginState, any>(
   {
     [SET_INFO] : ( state, {payload : {name, value}}) => {
       return produce(state, draft => {
-        console.log(name,value )
         draft.userInfo[name] = value;
-
       })
     },
     [LOGIN_SUCCESS] : (state, {payload :auth}) => {
       return produce(state, draft => {
         console.log(auth)
+        draft.authError = null;
+        draft.auth = auth;
+        draft.isLoggedIn = true;
       })
     },
-    [LOGIN_FAILURE] : (state, action) => {
+    [LOGIN_FAILURE] : (state, {payload : error}) => {
       return produce(state, draft => {
-        console.log(action)
+        console.log(error)
+        draft.authError = null;
+        draft.authError = error
       })
     }
   },

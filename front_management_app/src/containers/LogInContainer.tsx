@@ -15,16 +15,17 @@ interface LoginFormProps extends FormComponentProps {
 
 const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
 
-  const { isLoggedIn , userInfo } = useSelector(({login} : StoreState) => ({
+  const { isLoggedIn , userInfo, authError ,auth } = useSelector(({login} : StoreState) => ({
     isLoggedIn : login.isLoggedIn,
     userInfo : login.userInfo,
+    auth : login.auth,
+    authError : login.authError
   }))
 
   const dispatch = useDispatch();
   
   const handleChange = useCallback((e: FormEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
-    console.log(value)
     dispatch(LoginActions.setInfo({name, value}))
   },[])
 
@@ -32,13 +33,33 @@ const HomeContainer: React.FC<LoginFormProps> = ({ form, history }) => {
     form.validateFields();
   }, []);
 
+
+  useEffect(() => {
+    if(auth) {
+      alert(auth.message)
+    }
+    if(authError) {
+      authError.status === 401 && alert(authError.data.message)
+    } 
+  },[authError, auth])
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      localStorage.setItem(userInfo.email, JSON.stringify(userInfo.email))
+    }
+    if(auth) {
+      auth.user_type === 'U' 
+      ? history.push(`/workerinfo/detail/${auth.id}`)
+      : history.push(`/workersList`);
+    } 
+
+  },[auth, isLoggedIn])
   //로그인성공 받은 상태값마다 다르게 설정해야함 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     form.validateFields((err, value) => {
-      const { email, password } = userInfo;
+      const { email, password} = value
       if (!err) {
-        console.log(email, password)
         dispatch(LoginActions.LoginReq({email, password}));
       }
     });

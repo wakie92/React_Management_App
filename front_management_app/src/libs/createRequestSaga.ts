@@ -4,20 +4,16 @@ import { LoadingActions } from 'store/modules/loading';
 export const createRequestActionTypes = (type:string) => {
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
-  console.log([type, SUCCESS, FAILURE])
   return [type, SUCCESS, FAILURE]
 }
 
 export default function createRequestSaga(type:string, request:any){
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`
-  console.log(request)
   return function*(action: any){
-    console.log(action);
     yield put(LoadingActions.startLoading(type))
     try {
       const res = yield call(request, action.payload)
-      console.log(res);
       yield put({
         type : SUCCESS,
         payload : res.data,
